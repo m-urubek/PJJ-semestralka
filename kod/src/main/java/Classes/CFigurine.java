@@ -40,7 +40,7 @@ public class CFigurine {
     }
 
     public void setM_type (TFigurineType m_type) {
-        //Getter - DONE
+        //Setter - DONE
         this.m_type = m_type;
     }
 
