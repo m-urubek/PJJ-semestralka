@@ -12,7 +12,7 @@ public class CGame {
     private List<CSettlerFigurine> m_settlerFigurines;
     private TState m_playerState;
 
-    public CGame(CGameLayout m_gameLayout) {
+    public CGame() {
 
     }
 
