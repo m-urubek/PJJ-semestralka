@@ -3,7 +3,7 @@ package Classes;
 import DataTypes.TFigurineType;
 import DataTypes.TPoint;
 
-public class CFigurine {
+public abstract class CFigurine {
     private TFigurineType m_type;
 
     public CFigurine () {

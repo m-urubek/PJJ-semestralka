@@ -12,6 +12,10 @@ public class CGameLayout {
         //TODO
     }
 
+    private void insertField(CField field, TPoint coordinates){
+        //TODO
+    }
+
     public void DeleteFieldContent(TPoint target) {
         //TODO
     }
@@ -23,7 +27,7 @@ public class CGameLayout {
     public CField GetAt(TPoint coordinates) {
         return null;
     }
-
+    //TODO
     /**
      * move
      * Moves the figurine on source coordinates to target coordinates
