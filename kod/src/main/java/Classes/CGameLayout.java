@@ -12,10 +12,6 @@ public class CGameLayout {
         //TODO
     }
 
-    private void insertField(CField field, TPoint coordinates){
-        //TODO
-    }
-
     public void DeleteFieldContent(TPoint target) {
         //TODO
     }
