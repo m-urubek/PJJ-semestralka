@@ -1,6 +1,4 @@
 package Classes;
 
-public class CIndianFigurine {
-    public CIndianFigurine() {
-    }
+public class CIndianFigurine extends CFigurine {
 }
