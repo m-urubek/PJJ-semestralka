@@ -10,9 +10,7 @@ public class CFigurineTest {
     @Test
     public void isLegalMoveIndian() {
         CGame game = new CGame();
-        TPoint targetCoords = new TPoint();
-        targetCoords.x = 3;
-        targetCoords.y = 3;
+        TPoint targetCoords = new TPoint(3,3);
 
         CFigurine indianFigure = game.getM_gameLayout().GetAt(targetCoords).getM_figurine();
 
@@ -83,9 +81,7 @@ public class CFigurineTest {
     @Test
     public void isLegalMoveSettler() {
         CGame game = new CGame();
-        TPoint targetCoords = new TPoint();
-        targetCoords.x = 6;
-        targetCoords.y = 3;
+        TPoint targetCoords = new TPoint(6,3);
         CFigurine settlerFigure = game.getM_gameLayout().GetAt(targetCoords).getM_figurine();
 
         //Ilegal diagonal move
