@@ -9,37 +9,49 @@ public class CGameLayout {
     private CFigurine m_currentlySelectedFigurine;
 
     public CGameLayout() {
+        //TODO
     }
 
     public void DeleteFieldContent(TPoint target) {
-
+        //TODO
     }
 
     public void DeleteFieldContent(CField field) {
-
+        //TODO
     }
 
     public CField GetAt(TPoint coordinates) {
         return null;
     }
 
+    /**
+     * move
+     * Moves the figurine on source coordinates to target coordinates
+     *
+     * @param source			coordinates where the figure is currently located
+     * @param target			coordinates where the figure is supposed to move
+     */
     public void Move(TPoint source, TPoint target) {
-
+        //TODO
     }
 
     public boolean IsFarm(TPoint coordinates){
-        return true;// todo
+        //TODO
+        return true;
     }
 
     public boolean IsFarm(CField field){
-        return true;// todo
+        //TODO
+        return true;
     }
 
     public CFigurine getM_currentlySelectedFigurine() {
+        //Getter - DONE
         return m_currentlySelectedFigurine;
     }
 
     public void setM_currentlySelectedFigurine(CFigurine m_currentlySelectedFigurine) {
+        //Setter - DONE
         this.m_currentlySelectedFigurine = m_currentlySelectedFigurine;
     }
 }

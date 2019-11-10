@@ -25,6 +25,13 @@ public class CFigurine {
         return null;
     }
 
+    /**
+     * isLegalMove
+     * Checks if figurine move is valid.
+     *
+     * @param coordinates   coordinates where the figure is supposed to move
+     * @return            	true if the move can be done
+     */
     public boolean isLegalMove (TPoint coordinates) {
         //TODO
         return false;
