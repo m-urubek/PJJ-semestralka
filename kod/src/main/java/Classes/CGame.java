@@ -39,4 +39,8 @@ public class CGame {
     public void setM_playerState(TState m_playerState) {
         this.m_playerState = m_playerState;
     }
+
+    public CGameLayout getM_gameLayout() {
+        return m_gameLayout;
+    }
 }
