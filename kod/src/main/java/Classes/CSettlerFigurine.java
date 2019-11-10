@@ -1,4 +1,4 @@
 package Classes;
 
-public class CSettlerFigurine {
+public class CSettlerFigurine extends CFigurine {
 }
