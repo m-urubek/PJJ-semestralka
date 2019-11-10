@@ -133,4 +133,36 @@ public class CFigurineTest {
         targetCoords.y = -1;
         assertFalse(settlerFigure.isLegalMove(targetCoords));
     }
+
+    @Test
+    public void isLegalMoveKicking() {
+        CGame game = new CGame();
+
+        game.getM_gameLayout().GetAt(new TPoint(0,4)).setM_figurine(null);
+        game.getM_gameLayout().GetAt(new TPoint(2,2)).setM_figurine(null);
+        game.getM_gameLayout().GetAt(new TPoint(5,3)).setM_figurine(new CIndianFigurine());
+
+        CFigurine settler = game.getM_gameLayout().GetAt(new TPoint(6,2)).getM_figurine();
+
+        assertTrue(settler.isLegalMove(new TPoint(4,4)));
+        assertTrue(settler.isLegalMove(new TPoint(2,2)));
+        assertTrue(settler.isLegalMove(new TPoint(0,4)));
+
+        settler = game.getM_gameLayout().GetAt(new TPoint(6,4)).getM_figurine();
+
+        assertTrue(settler.isLegalMove(new TPoint(4,2)));
+        assertFalse(settler.isLegalMove(new TPoint(2,4)));
+        assertFalse(settler.isLegalMove(new TPoint(0,2)));
+
+        game.getM_gameLayout().GetAt(new TPoint(5,4)).setM_figurine(new CSettlerFigurine());
+        game.getM_gameLayout().GetAt(new TPoint(4,3)).setM_figurine(new CIndianFigurine());
+        game.getM_gameLayout().GetAt(new TPoint(3,2)).setM_figurine(null);
+
+        settler = game.getM_gameLayout().GetAt(new TPoint(5,4)).getM_figurine();
+
+        assertFalse(settler.isLegalMove(new TPoint(3,2)));
+
+    }
+
+
 }
