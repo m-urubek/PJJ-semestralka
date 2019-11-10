@@ -13,34 +13,38 @@ public class CGame {
     private TState m_playerState;
 
     public CGame() {
-
+        //TODO
     }
 
     public void NewGame() {
-
+        //TODO
     }
 
     public void EndGame() {
-
+        //TODO
     }
 
     public void EndTurn() {
-
+        //TODO
     }
 
     public TCurrentPlayerTurn getM_currentPlayerTurn() {
+        //Getter - DONE
         return m_currentPlayerTurn;
     }
 
     public TState getM_playerState() {
+        //Getter - DONE
         return m_playerState;
     }
 
     public void setM_playerState(TState m_playerState) {
+        //Setter - DONE
         this.m_playerState = m_playerState;
     }
 
     public CGameLayout getM_gameLayout() {
+        //Getter - DONE
         return m_gameLayout;
     }
 }
