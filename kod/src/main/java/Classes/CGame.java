@@ -43,4 +43,12 @@ public class CGame {
     public CGameLayout getM_gameLayout() {
         return m_gameLayout;
     }
+
+    public List<CIndianFigurine> getM_indianFigurines() {
+        return m_indianFigurines;
+    }
+
+    public List<CSettlerFigurine> getM_settlerFigurines() {
+        return m_settlerFigurines;
+    }
 }
