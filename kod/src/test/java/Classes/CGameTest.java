@@ -97,6 +97,7 @@ public class CGameTest {
         game.EndTurn();
         assertEquals(game.getM_playerState(), TState.NotMoved);
         assertNotEquals(currentPlayerTurn, game.getM_currentPlayerTurn());  // currentPlayerTurn should be changed because state was CanOnlyKill()
+        assertEquals(null, game.getM_gameLayout().GetAt(new TPoint(3,6)));//settler should get killed
         currentPlayerTurn = game.getM_currentPlayerTurn();
         game.EndTurn();
         assertEquals(currentPlayerTurn, game.getM_currentPlayerTurn());  // currentPlayerTurn should not be changed because the EndTurn() should not proceed
