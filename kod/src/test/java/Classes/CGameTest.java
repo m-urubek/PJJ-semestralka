@@ -6,8 +6,6 @@ import DataTypes.TPoint;
 import DataTypes.TState;
 import org.junit.Test;
 
-import java.util.List;
-
 import static org.junit.Assert.*;
 
 public class CGameTest {
