@@ -44,10 +44,12 @@ public class CGame {
     }
 
     public List<CIndianFigurine> getM_indianFigurines() {
+        //Getter - DONE
         return m_indianFigurines;
     }
 
     public List<CSettlerFigurine> getM_settlerFigurines() {
+        //Getter - DONE
         return m_settlerFigurines;
     }
 }
