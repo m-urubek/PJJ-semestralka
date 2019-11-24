@@ -11,6 +11,10 @@ public abstract class CFigurine {
         //TODO
     }
 
+    public CFigurine() {
+
+    }
+
     public CIndianFigurine getIndianFigurine() {
         //DONE via Override
         return null;
@@ -44,22 +48,12 @@ public abstract class CFigurine {
         this.m_type = m_type;
     }
 
-    public TPoint getM_position() {
+    public CField getM_field() {
         //Getter - DONE
-        return this.m_position;
+        return this.m_field;
     }
 
-    public void setM_position (TPoint position) {
-        //Setter - DONE
-        this.m_position.x = position.x;
-        this.m_position.y = position.y;
-    }
 
-    public void setM_position (int x, int y) {
-        //Setter - DONE
-        this.m_position.x = x;
-        this.m_position.y = y;
-    }
 
 
 

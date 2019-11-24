@@ -5,6 +5,7 @@ import DataTypes.TPoint;
 public class CIndianFigurine extends CFigurine {
 
     public CIndianFigurine() {
+        super();
         //TODO
     }
 
@@ -37,13 +38,13 @@ public class CIndianFigurine extends CFigurine {
                 (field.getM_x() > 4 && field.getM_y() > 4))
             return false;
         //Check if move too far away
-        if (Math.abs(field.getM_x() - this.getM_position().x) > 1 || Math.abs(field.getM_y() - this.getM_position().y) > 1 )
+        if (Math.abs(field.getM_x() - this.getM_field().getM_x()) > 1 || Math.abs(field.getM_y() - this.getM_field().getM_y()) > 1 )
             return false;
         //Check if move backwards
-        if (field.getM_x() < this.getM_position().x)
+        if (field.getM_x() < this.getM_field().getM_x())
             return false;
         //Check if move diagonally
-        if (field.getM_x() != this.getM_position().x && field.getM_y() != this.getM_position().y)
+        if (field.getM_x() != this.getM_field().getM_x() && field.getM_y() != this.getM_field().getM_y())
             return false;
         //Check if target coordination is occupied
         return field.getM_figurine() == null;
