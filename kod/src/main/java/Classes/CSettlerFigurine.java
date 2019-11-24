@@ -1,5 +1,7 @@
 package Classes;
+import DataTypes.TCurrentPlayerTurn;
 import DataTypes.TPoint;
+import DataTypes.TState;
 
 public class CSettlerFigurine extends CFigurine {
 
@@ -7,17 +9,33 @@ public class CSettlerFigurine extends CFigurine {
         //TODO
     }
 
-    public void KillIndian(TPoint coordinates) {
-        //TODO
+
+    private boolean lookForKill(CField field) {
+        //DONE
+        if ((this.m_field.getM_x() - field.getM_x() == 2) && (this.m_field.getM_y() - field.getM_y() == 2)) {
+            int x = this.m_field.getM_x();
+            int y = this.m_field.getM_y();
+            if (field.getM_x() > x) {
+                x++;
+            } else {
+                x--;
+            }
+            if (field.getM_y() > y) {
+                y++;
+            } else {
+                y--;
+            }
+            KillIndian(new TPoint(x,y));
+            return true;
+        }
+        return false;
     }
 
-    public void KillIndian(CIndianFigurine indian) {
-        //TODO
+    public void KillIndian(TPoint coords) {
+        //DONE
+        CGame.m_gameLayout.GetAt(coords).setM_figurine(null);
     }
 
-    public void KillIndian(CField indian) {
-        //TODO
-    }
 
     @Override
     public CIndianFigurine getIndianFigurine() {
@@ -29,6 +47,48 @@ public class CSettlerFigurine extends CFigurine {
     public CSettlerFigurine getSettlerFigurine() {
         //DONE
         return this;
+    }
+
+    @Override
+    public void move (CField field) {
+        //Check side of player
+        if (CGame.m_currentPlayerTurn != TCurrentPlayerTurn.Settler)
+            return;
+        //Settler's move
+
+        //Checks if figurine is settler
+        if (this.getSettlerFigurine() == null)
+            return;
+        //Checks if move is legal
+        if (!isLegalMove(field))
+            return;
+
+        //Check if indian should be killed and kill him
+        boolean killed = lookForKill(field);
+
+        //Get coords of next possible kill
+        int x = this.m_field.getM_x();
+        int y = this.m_field.getM_y();
+        if (field.getM_x() > x) {
+            x+=4;
+        } else {
+            x-=4;
+        }
+
+        //Move the figurine
+        TPoint oldField = new TPoint(this.m_field.getM_x(), this.m_field.getM_y());
+        field.setM_figurine(this);
+        CGame.m_gameLayout.GetAt(oldField).setM_figurine(null);
+        //Change game state
+        if (killed) {
+            if (isLegalMove(CGame.m_gameLayout.GetAt(new TPoint(x,y)))) {
+                CGame.m_playerState = TState.CanOnlyKill;
+            } else {
+                CGame.m_playerState = TState.Moved;
+            }
+        } else {
+            CGame.m_playerState = TState.Moved;
+        }
     }
 
     @Override
@@ -56,15 +116,17 @@ public class CSettlerFigurine extends CFigurine {
             if (Math.abs(field.getM_x() - this.m_field.getM_x()) > 1 || Math.abs(field.getM_y() - this.m_field.getM_y()) > 1) {
                 //Moving too far away may indicate killing enemy figure
 
-                //Checking if moving right
-                if (field.getM_x() > this.m_field.getM_x())
-                    return false;
                 //Check if not moving 2 horizontal and 2 vertical
                 if (Math.abs(field.getM_x() - this.m_field.getM_x()) != 2 || Math.abs(field.getM_y() - this.m_field.getM_y()) != 2)
                     return false;
                 //Check if the field between the positions contains indian figure
-                int x = this.m_field.getM_x() - 1;
+                int x = this.m_field.getM_x();
                 int y = this.m_field.getM_y();
+                if (field.getM_x() > x) {
+                    x++;
+                } else {
+                    x--;
+                }
                 if (field.getM_y() > y) {
                     y++;
                 } else {

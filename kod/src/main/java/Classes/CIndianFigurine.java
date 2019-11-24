@@ -1,6 +1,8 @@
 package Classes;
 
+import DataTypes.TCurrentPlayerTurn;
 import DataTypes.TPoint;
+import DataTypes.TState;
 
 public class CIndianFigurine extends CFigurine {
 
@@ -18,6 +20,29 @@ public class CIndianFigurine extends CFigurine {
     public CSettlerFigurine getSettlerFigurine() {
         //DONE
         return null;
+    }
+
+    @Override
+    public void move (CField field) {
+        //Check side of player
+        if (CGame.m_currentPlayerTurn != TCurrentPlayerTurn.Indian)
+            return;
+        //Indian's move
+
+        //Checks if figurine is indian
+        if (this.getIndianFigurine() == null)
+            return;
+        //Checks if move is legal
+        if (!isLegalMove(field))
+            return;
+
+        //Moves the figurine
+        TPoint oldField = new TPoint(this.m_field.getM_x(), this.m_field.getM_y());
+        field.setM_figurine(this);
+        CGame.m_gameLayout.GetAt(oldField).setM_figurine(null);
+
+        //Changes game state
+        CGame.m_playerState = TState.Moved;
     }
 
     @Override

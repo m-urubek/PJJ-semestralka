@@ -1,5 +1,6 @@
 package Classes;
 
+import DataTypes.TCurrentPlayerTurn;
 import DataTypes.TFigurineType;
 import DataTypes.TPoint;
 
@@ -26,9 +27,7 @@ public abstract class CFigurine {
      */
     public abstract boolean isLegalMove (CField field);
 
-    public void move (CField field) {
-        //TODO
-    }
+    public abstract void move (CField field);
 
     public TFigurineType getM_type () {
         //Getter - DONE

@@ -1,6 +1,8 @@
 package Classes;
 
+import DataTypes.TCurrentPlayerTurn;
 import DataTypes.TPoint;
+import DataTypes.TState;
 
 import java.util.List;
 
@@ -38,7 +40,12 @@ public class CGameLayout {
      * @param target			Field where the figure is supposed to move
      */
     public void Move(CField source, CField target) {
-        //TODO
+        //In Progress - TODO
+
+        //Check if player already played
+        if (CGame.m_playerState == TState.Moved)
+            return;
+        source.getM_figurine().move(target);
     }
 
     public boolean IsFarm(TPoint coordinates){
