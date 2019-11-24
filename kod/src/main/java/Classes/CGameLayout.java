@@ -4,6 +4,8 @@ import DataTypes.TPoint;
 
 import java.util.List;
 
+import static Classes.CGeneralHelper.indexToCoords;
+
 public class CGameLayout {
     private List<CField> m_board;
     private CFigurine m_currentlySelectedFigurine;
@@ -13,18 +15,6 @@ public class CGameLayout {
         for (int i = 0; i< CGame.BOARD_WIDTH*CGame.BOARD_WIDTH; i++) {
             this.m_board.add(new CField(indexToCoords(i)));
         }
-    }
-
-    private TPoint indexToCoords (int index) {
-        //DONE - TODO Review!
-        // x= index MOD 7; y= index DIV 7
-        return new TPoint( index % CGame.BOARD_WIDTH, index/CGame.BOARD_WIDTH );
-    }
-
-    private int coordsToIndex (TPoint coords) {
-        //DONE - TODO Review!
-        // index = x + y*7
-        return coords.x + coords.y*CGame.BOARD_WIDTH;
     }
 
     public void DeleteFieldContent(TPoint target) {
