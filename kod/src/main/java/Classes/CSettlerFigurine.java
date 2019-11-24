@@ -49,22 +49,22 @@ public class CSettlerFigurine extends CFigurine {
             return false;
 
         //Check if diagonal move is possible
-        if ( (this.getM_field().getM_x() % 2) == (this.getM_field().getM_y() % 2) ) {
+        if ( (this.m_field.getM_x() % 2) == (this.m_field.getM_y() % 2) ) {
             //Can move diagonally
 
             //Check if moving too far away
-            if (Math.abs(field.getM_x() - this.getM_field().getM_x()) > 1 || Math.abs(field.getM_y() - this.getM_field().getM_y()) > 1) {
+            if (Math.abs(field.getM_x() - this.m_field.getM_x()) > 1 || Math.abs(field.getM_y() - this.m_field.getM_y()) > 1) {
                 //Moving too far away may indicate killing enemy figure
 
                 //Checking if moving right
-                if (field.getM_x() > this.getM_field().getM_x())
+                if (field.getM_x() > this.m_field.getM_x())
                     return false;
                 //Check if not moving 2 horizontal and 2 vertical
-                if (Math.abs(field.getM_x() - this.getM_field().getM_x()) != 2 || Math.abs(field.getM_y() - this.getM_field().getM_y()) != 2)
+                if (Math.abs(field.getM_x() - this.m_field.getM_x()) != 2 || Math.abs(field.getM_y() - this.m_field.getM_y()) != 2)
                     return false;
                 //Check if the field between the positions contains indian figure
-                int x = this.getM_field().getM_x() - 1;
-                int y = this.getM_field().getM_y();
+                int x = this.m_field.getM_x() - 1;
+                int y = this.m_field.getM_y();
                 if (field.getM_y() > y) {
                     y++;
                 } else {
@@ -79,10 +79,10 @@ public class CSettlerFigurine extends CFigurine {
             //Can not move diagonally
 
             //Check if moving too far away
-            if (Math.abs(field.getM_x() - this.getM_field().getM_x()) > 1 || Math.abs(field.getM_y() - this.getM_field().getM_y()) > 1)
+            if (Math.abs(field.getM_x() - this.m_field.getM_x()) > 1 || Math.abs(field.getM_y() - this.m_field.getM_y()) > 1)
                 return false;
             //Check if moving diagonally
-            if (field.getM_x() != this.getM_field().getM_x() && field.getM_y() != this.getM_field().getM_y())
+            if (field.getM_x() != this.m_field.getM_x() && field.getM_y() != this.m_field.getM_y())
                 return false;
             //Check if target field is occupied
             return field.getM_figurine() == null;
