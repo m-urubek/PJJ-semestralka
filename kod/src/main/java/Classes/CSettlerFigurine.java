@@ -36,9 +36,9 @@ public class CSettlerFigurine extends CFigurine {
         //DONE - TODO Review!
         //Check if out of bounds
         if (    field.getM_x() < 0 ||
-                field.getM_x() >= CGame.BOARD_WIDTH ||
+                field.getM_x() >= CGeneralHelper.BOARD_WIDTH ||
                 field.getM_y() < 0 ||
-                field.getM_y() >=CGame.BOARD_WIDTH)
+                field.getM_y() >=CGeneralHelper.BOARD_WIDTH)
             return false;
         //Check if out of bounds
         //TODO - Those numbers (2 and 4) should be CONSTANTS but I don't care right now

@@ -5,6 +5,7 @@ import DataTypes.TPoint;
 import DataTypes.TPointResult;
 
 public class CGeneralHelper {
+    public static final int BOARD_WIDTH = 7;
 
     public static TPointResult indexToCoords(int index) {
         //DONE
