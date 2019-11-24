@@ -7,14 +7,6 @@ public abstract class CFigurine {
     private TFigurineType m_type;
     protected CField m_field;
 
-    public CFigurine (CField field) {
-        //TODO
-    }
-
-    public CFigurine() {
-
-    }
-
     public CIndianFigurine getIndianFigurine() {
         //DONE via Override
         return null;

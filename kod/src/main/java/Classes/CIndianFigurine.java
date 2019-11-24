@@ -4,8 +4,7 @@ import DataTypes.TPoint;
 
 public class CIndianFigurine extends CFigurine {
 
-    public CIndianFigurine() {
-        super();
+    public CIndianFigurine (CField field) {
         //TODO
     }
 

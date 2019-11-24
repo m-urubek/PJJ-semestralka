@@ -2,8 +2,8 @@ package Classes;
 import DataTypes.TPoint;
 
 public class CSettlerFigurine extends CFigurine {
-    public CSettlerFigurine() {
-        super();
+
+    public CSettlerFigurine (CField field) {
         //TODO
     }
 
