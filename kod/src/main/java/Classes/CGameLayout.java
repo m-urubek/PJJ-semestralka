@@ -5,11 +5,11 @@ import DataTypes.TPoint;
 import java.util.List;
 
 public class CGameLayout {
-    private final int BOARD_WIDTH = 7; //Supposed to be CONSTANT, might change later
+    private final int BOARD_WIDTH = 7; //Supposed to be CONSTANT, might change later (ʘ‿ʘ)
     private List<CField> m_board;
     private CFigurine m_currentlySelectedFigurine;
 
-    public CGameLayout(List<CField> m_board) {
+    public CGameLayout() {
         //TODO - Creates empty game field - TODO Review!!!
         for (int i = 0; i< BOARD_WIDTH*BOARD_WIDTH; i++) {
             this.m_board.add(new CField(listToCoords(i)));
