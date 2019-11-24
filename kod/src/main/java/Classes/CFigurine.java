@@ -47,9 +47,4 @@ public abstract class CFigurine {
         //Setter - DONE
         this.m_type = m_type;
     }
-
-
-
-
-
 }

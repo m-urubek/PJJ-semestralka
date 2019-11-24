@@ -9,8 +9,8 @@ public class CGameLayoutTest {
 
     @Test
     public void testMoveIndian() {
-        CGameLayout testBoard = new CGameLayout(m_board);
-        CGameLayout controlBoard = new CGameLayout(m_board);
+        CGameLayout testBoard = new CGameLayout();
+        CGameLayout controlBoard = new CGameLayout();
 
         //Legal horizontal move
         TPoint sourceCoords = new TPoint(3,3);
