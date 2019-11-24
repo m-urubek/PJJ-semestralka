@@ -70,7 +70,7 @@ public class CSettlerFigurine extends CFigurine {
                 } else {
                     y--;
                 }
-                if (CGame.getM_gameLayout().GetAt(new TPoint(x,y)).getM_figurine().getIndianFigurine()==null)
+                if (CGame.m_gameLayout.GetAt(new TPoint(x,y)).getM_figurine().getIndianFigurine()==null)
                     return false;
             }
             //Check if target field is occupied

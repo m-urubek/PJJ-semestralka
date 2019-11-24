@@ -12,7 +12,7 @@ public class CGameLayout {
 
     public CGameLayout() {
         //TODO - Creates empty game field - TODO Review!!!
-        for (int i = 0; i < CGame.BOARD_WIDTH * CGame.BOARD_WIDTH; i++) {
+        for (int i = 0; i < CGeneralHelper.BOARD_WIDTH * CGeneralHelper.BOARD_WIDTH; i++) {
             this.m_board.add(new CField(indexToCoords(i).value));
         }
     }
