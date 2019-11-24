@@ -5,9 +5,9 @@ import DataTypes.TPoint;
 
 public abstract class CFigurine {
     private TFigurineType m_type;
-    private TPoint m_position;
+    private CField m_field;
 
-    public CFigurine () {
+    public CFigurine (CField field) {
         //TODO
     }
 
@@ -20,13 +20,6 @@ public abstract class CFigurine {
         //DONE via Override
         return null;
     };
-
-    public CField getAsField() {
-        //TODO
-
-
-        return null;
-    }
 
     /**
      * isLegalMove
