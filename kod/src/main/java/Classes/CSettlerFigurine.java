@@ -32,7 +32,7 @@ public class CSettlerFigurine extends CFigurine {
 
     @Override
     public boolean isLegalMove (CField field) {
-        //In Progress - polymorphism
+        //DONE - TODO Review!
         //Check if out of bounds
         if (    field.getM_x() < 0 ||
                 field.getM_x() >= CGame.BOARD_WIDTH ||
@@ -61,7 +61,16 @@ public class CSettlerFigurine extends CFigurine {
                 //Check if not moving 2 horizontal and 2 vertical
                 if (Math.abs(field.getM_x() - this.getM_position().x) != 2 || Math.abs(field.getM_y() - this.getM_position().y) != 2)
                     return false;
-                //Check if the field in between the positions contains indian figure
+                //Check if the field between the positions contains indian figure
+                int x = this.getM_position().x - 1;
+                int y = this.getM_position().y;
+                if (field.getM_y() > this.getM_position().y) {
+                    y++;
+                } else {
+                    y--;
+                }
+                if (CGame.getM_gameLayout().GetAt(new TPoint(x,y)).getM_figurine().getIndianFigurine()==null)
+                    return false;
             }
             //Check if target field is occupied
             return field.getM_figurine() == null;
