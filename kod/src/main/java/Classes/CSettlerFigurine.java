@@ -18,4 +18,10 @@ public class CSettlerFigurine extends CFigurine {
         //TODO
     }
 
+    @Override
+    public boolean isLegalMove (CField field) {
+        //TODO - polymorphism
+        return false;
+    }
+
 }

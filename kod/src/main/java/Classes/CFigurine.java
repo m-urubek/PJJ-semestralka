@@ -32,16 +32,12 @@ public abstract class CFigurine {
      * isLegalMove
      * Checks if figurine move is valid.
      *
-     * @param coordinates   coordinates where the figure is supposed to move
+     * @param field   field where the figure is supposed to move
      * @return            	true if the move can be done
      */
-    public boolean isLegalMove (TPoint coordinates) {
-        //TODO
+    public abstract boolean isLegalMove (CField field);
 
-        return false;
-    }
-
-    public void move (TPoint coordinates) {
+    public void move (CField field) {
         //TODO
     }
 

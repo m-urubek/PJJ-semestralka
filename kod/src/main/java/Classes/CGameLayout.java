@@ -5,20 +5,26 @@ import DataTypes.TPoint;
 import java.util.List;
 
 public class CGameLayout {
-    private final int BOARD_WIDTH = 7; //Supposed to be CONSTANT, might change later (ʘ‿ʘ)
     private List<CField> m_board;
     private CFigurine m_currentlySelectedFigurine;
 
     public CGameLayout() {
         //TODO - Creates empty game field - TODO Review!!!
-        for (int i = 0; i< BOARD_WIDTH*BOARD_WIDTH; i++) {
-            this.m_board.add(new CField(listToCoords(i)));
+        for (int i = 0; i< CGame.BOARD_WIDTH*CGame.BOARD_WIDTH; i++) {
+            this.m_board.add(new CField(indexToCoords(i)));
         }
     }
 
-    private TPoint listToCoords (int index) {
+    private TPoint indexToCoords (int index) {
         //DONE - TODO Review!
-        return new TPoint( index % BOARD_WIDTH, index/BOARD_WIDTH );
+        // x= index MOD 7; y= index DIV 7
+        return new TPoint( index % CGame.BOARD_WIDTH, index/CGame.BOARD_WIDTH );
+    }
+
+    private int coordsToIndex (TPoint coords) {
+        //DONE - TODO Review!
+        // index = x + y*7
+        return coords.x + coords.y*CGame.BOARD_WIDTH;
     }
 
     public void DeleteFieldContent(TPoint target) {
@@ -38,10 +44,10 @@ public class CGameLayout {
      * move
      * Moves the figurine on source coordinates to target coordinates
      *
-     * @param source			coordinates where the figure is currently located
-     * @param target			coordinates where the figure is supposed to move
+     * @param source			Field where the figure is currently located
+     * @param target			Field where the figure is supposed to move
      */
-    public void Move(TPoint source, TPoint target) {
+    public void Move(CField source, CField target) {
         //TODO
     }
 
