@@ -9,8 +9,8 @@ public class CGameLayoutTest {
 
     @Test
     public void testMoveIndian() {
-        CGameLayout testBoard = new CGameLayout();
-        CGameLayout controlBoard = new CGameLayout();
+        CGameLayout testBoard = new CGameLayout(m_board);
+        CGameLayout controlBoard = new CGameLayout(m_board);
 
         //Legal horizontal move
         TPoint sourceCoords = new TPoint(3,3);
@@ -81,8 +81,8 @@ public class CGameLayoutTest {
 
     @Test
     public void testMoveSettler() {
-        CGameLayout testBoard = new CGameLayout();
-        CGameLayout controlBoard = new CGameLayout();
+        CGameLayout testBoard = new CGameLayout(m_board);
+        CGameLayout controlBoard = new CGameLayout(m_board);
 
         //Legal horizontal move
         TPoint sourceCoords = new TPoint(6,3);

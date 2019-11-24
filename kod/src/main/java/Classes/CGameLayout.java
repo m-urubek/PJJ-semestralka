@@ -5,11 +5,20 @@ import DataTypes.TPoint;
 import java.util.List;
 
 public class CGameLayout {
+    private final int BOARD_WIDTH = 7; //Supposed to be CONSTANT, might change later
     private List<CField> m_board;
     private CFigurine m_currentlySelectedFigurine;
 
-    public CGameLayout() {
-        //TODO
+    public CGameLayout(List<CField> m_board) {
+        //TODO - Creates empty game field - TODO Review!!!
+        for (int i = 0; i< BOARD_WIDTH*BOARD_WIDTH; i++) {
+            this.m_board.add(new CField(listToCoords(i)));
+        }
+    }
+
+    private TPoint listToCoords (int index) {
+        //DONE - TODO Review!
+        return new TPoint( index % BOARD_WIDTH, index/BOARD_WIDTH );
     }
 
     public void DeleteFieldContent(TPoint target) {
@@ -21,9 +30,10 @@ public class CGameLayout {
     }
 
     public CField GetAt(TPoint coordinates) {
+        //TODO
         return null;
     }
-    //TODO
+
     /**
      * move
      * Moves the figurine on source coordinates to target coordinates
@@ -36,12 +46,12 @@ public class CGameLayout {
     }
 
     public boolean IsFarm(TPoint coordinates){
-        //TODO
-        return true;
+        //DONE - Why to write one code twice when I just can call same method with edited shit?
+        return IsFarm( GetAt(coordinates) );
     }
 
     public boolean IsFarm(CField field){
-        //TODO
+        //TODO - This needs to be done though
         return true;
     }
 

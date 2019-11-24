@@ -13,7 +13,8 @@ public class CGame {
     private TState m_playerState;
 
     public CGame() {
-        this.m_gameLayout = new CGameLayout();
+        //TODO - On hold
+        this.m_gameLayout = new CGameLayout(m_board);
         this.m_currentPlayerTurn = TCurrentPlayerTurn.Indian;
         //TODO - Lists of indians and Settlers!
         this.m_playerState = TState.NotMoved;
