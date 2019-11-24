@@ -8,7 +8,7 @@ import java.util.List;
 public class CGame {
     public static final int BOARD_WIDTH = 7; //Supposed to be CONSTANT, might change later (ʘ‿ʘ)
 
-    private CGameLayout m_gameLayout;
+    private static CGameLayout m_gameLayout;
     private TCurrentPlayerTurn m_currentPlayerTurn;
     private List<CIndianFigurine> m_indianFigurines;
     private List<CSettlerFigurine> m_settlerFigurines;
@@ -44,7 +44,7 @@ public class CGame {
         return m_playerState;
     }
 
-    public CGameLayout getM_gameLayout() {
+    public static CGameLayout getM_gameLayout() {
         //Getter - DONE
         return m_gameLayout;
     }
