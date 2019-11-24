@@ -9,6 +9,18 @@ public class CIndianFigurine extends CFigurine {
     }
 
     @Override
+    public CIndianFigurine getIndianFigurine() {
+        //DONE
+        return this;
+    };
+
+    @Override
+    public CSettlerFigurine getSettlerFigurine() {
+        //DONE
+        return null;
+    }
+
+    @Override
     public boolean isLegalMove (CField field) {
         //DONE - TODO Review!
         //Check if out of bounds

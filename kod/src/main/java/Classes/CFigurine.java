@@ -12,14 +12,14 @@ public abstract class CFigurine {
     }
 
     public CIndianFigurine getIndianFigurine() {
-        //TODO
+        //DONE via Override
         return null;
-    }
+    };
 
     public CSettlerFigurine getSettlerFigurine() {
-        //TODO
+        //DONE via Override
         return null;
-    }
+    };
 
     public CField getAsField() {
         //TODO
