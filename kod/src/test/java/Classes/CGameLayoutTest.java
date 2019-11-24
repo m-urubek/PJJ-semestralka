@@ -15,7 +15,7 @@ public class CGameLayoutTest {
         //Legal horizontal move
         TPoint sourceCoords = new TPoint(3,3);
         TPoint targetCoords = new TPoint(4,3);
-        testBoard.Move(sourceCoords, targetCoords);
+        testBoard.Move(CGame.getM_gameLayout().GetAt(sourceCoords), CGame.getM_gameLayout().GetAt(targetCoords));
         controlBoard.GetAt(targetCoords).setM_figurine(controlBoard.GetAt(sourceCoords).getM_figurine());
         controlBoard.GetAt(sourceCoords).setM_figurine(null);
         assertTrue(TestHelper.compareContentOfTwoGameLayouts(testBoard,controlBoard));
@@ -23,7 +23,7 @@ public class CGameLayoutTest {
         //Legal vertical move
         sourceCoords = new TPoint(4,3);
         targetCoords = new TPoint(4,4);
-        testBoard.Move(sourceCoords, targetCoords);
+        testBoard.Move(CGame.getM_gameLayout().GetAt(sourceCoords), CGame.getM_gameLayout().GetAt(targetCoords));
         controlBoard.GetAt(targetCoords).setM_figurine(controlBoard.GetAt(sourceCoords).getM_figurine());
         controlBoard.GetAt(sourceCoords).setM_figurine(null);
         assertTrue(TestHelper.compareContentOfTwoGameLayouts(testBoard,controlBoard));
@@ -31,7 +31,7 @@ public class CGameLayoutTest {
         //Legal vertical move
         sourceCoords = new TPoint(4,4);
         targetCoords = new TPoint(4,3);
-        testBoard.Move(sourceCoords, targetCoords);
+        testBoard.Move(CGame.getM_gameLayout().GetAt(sourceCoords), CGame.getM_gameLayout().GetAt(targetCoords));
         controlBoard.GetAt(targetCoords).setM_figurine(controlBoard.GetAt(sourceCoords).getM_figurine());
         controlBoard.GetAt(sourceCoords).setM_figurine(null);
         assertTrue(TestHelper.compareContentOfTwoGameLayouts(testBoard,controlBoard));
@@ -39,55 +39,55 @@ public class CGameLayoutTest {
         //Ilegal backward move
         sourceCoords = new TPoint(4,3);
         targetCoords = new TPoint(3,3);
-        testBoard.Move(sourceCoords, targetCoords);
+        testBoard.Move(CGame.getM_gameLayout().GetAt(sourceCoords), CGame.getM_gameLayout().GetAt(targetCoords));
         assertTrue(TestHelper.compareContentOfTwoGameLayouts(testBoard,controlBoard));
 
         //Ilegal diagonal move
         sourceCoords = new TPoint(4,3);
         targetCoords = new TPoint(4,4);
-        testBoard.Move(sourceCoords, targetCoords);
+        testBoard.Move(CGame.getM_gameLayout().GetAt(sourceCoords), CGame.getM_gameLayout().GetAt(targetCoords));
         assertTrue(TestHelper.compareContentOfTwoGameLayouts(testBoard,controlBoard));
 
         //Ilegal too far away move
         sourceCoords = new TPoint(4,3);
         targetCoords = new TPoint(4,6);
-        testBoard.Move(sourceCoords, targetCoords);
+        testBoard.Move(CGame.getM_gameLayout().GetAt(sourceCoords), CGame.getM_gameLayout().GetAt(targetCoords));
         assertTrue(TestHelper.compareContentOfTwoGameLayouts(testBoard,controlBoard));
 
         //Ilegal move to occupied field
         sourceCoords = new TPoint(3,0);
         targetCoords = new TPoint(3,1);
-        testBoard.Move(sourceCoords, targetCoords);
+        testBoard.Move(CGame.getM_gameLayout().GetAt(sourceCoords), CGame.getM_gameLayout().GetAt(targetCoords));
         assertTrue(TestHelper.compareContentOfTwoGameLayouts(testBoard,controlBoard));
 
         //Ilegal out of bounds move
         sourceCoords = new TPoint(3,0);
         targetCoords = new TPoint(3,-1);
-        testBoard.Move(sourceCoords, targetCoords);
+        testBoard.Move(CGame.getM_gameLayout().GetAt(sourceCoords), CGame.getM_gameLayout().GetAt(targetCoords));
         assertTrue(TestHelper.compareContentOfTwoGameLayouts(testBoard,controlBoard));
 
         //Ilegal out of bounds move
         sourceCoords = new TPoint(3,6);
         targetCoords = new TPoint(3,7);
-        testBoard.Move(sourceCoords, targetCoords);
+        testBoard.Move(CGame.getM_gameLayout().GetAt(sourceCoords), CGame.getM_gameLayout().GetAt(targetCoords));
         assertTrue(TestHelper.compareContentOfTwoGameLayouts(testBoard,controlBoard));
 
         //Ilegal out of bounds move
         sourceCoords = new TPoint(0,2);
         targetCoords = new TPoint(0,1);
-        testBoard.Move(sourceCoords, targetCoords);
+        testBoard.Move(CGame.getM_gameLayout().GetAt(sourceCoords), CGame.getM_gameLayout().GetAt(targetCoords));
         assertTrue(TestHelper.compareContentOfTwoGameLayouts(testBoard,controlBoard));
     }
 
     @Test
     public void testMoveSettler() {
-        CGameLayout testBoard = new CGameLayout(m_board);
-        CGameLayout controlBoard = new CGameLayout(m_board);
+        CGameLayout testBoard = new CGameLayout();
+        CGameLayout controlBoard = new CGameLayout();
 
         //Legal horizontal move
         TPoint sourceCoords = new TPoint(6,3);
         TPoint targetCoords = new TPoint(5,3);
-        testBoard.Move(sourceCoords, targetCoords);
+        testBoard.Move(CGame.getM_gameLayout().GetAt(sourceCoords), CGame.getM_gameLayout().GetAt(targetCoords));
         controlBoard.GetAt(targetCoords).setM_figurine(controlBoard.GetAt(sourceCoords).getM_figurine());
         controlBoard.GetAt(sourceCoords).setM_figurine(null);
         assertTrue(TestHelper.compareContentOfTwoGameLayouts(testBoard,controlBoard));
@@ -95,7 +95,7 @@ public class CGameLayoutTest {
         //Legal vertical move
         sourceCoords = new TPoint(5,3);
         targetCoords = new TPoint(5,2);
-        testBoard.Move(sourceCoords, targetCoords);
+        testBoard.Move(CGame.getM_gameLayout().GetAt(sourceCoords), CGame.getM_gameLayout().GetAt(targetCoords));
         controlBoard.GetAt(targetCoords).setM_figurine(controlBoard.GetAt(sourceCoords).getM_figurine());
         controlBoard.GetAt(sourceCoords).setM_figurine(null);
         assertTrue(TestHelper.compareContentOfTwoGameLayouts(testBoard,controlBoard));
@@ -103,7 +103,7 @@ public class CGameLayoutTest {
         //Legal vertical move
         sourceCoords = new TPoint(5,2);
         targetCoords = new TPoint(5,3);
-        testBoard.Move(sourceCoords, targetCoords);
+        testBoard.Move(CGame.getM_gameLayout().GetAt(sourceCoords), CGame.getM_gameLayout().GetAt(targetCoords));
         controlBoard.GetAt(targetCoords).setM_figurine(controlBoard.GetAt(sourceCoords).getM_figurine());
         controlBoard.GetAt(sourceCoords).setM_figurine(null);
         assertTrue(TestHelper.compareContentOfTwoGameLayouts(testBoard,controlBoard));
@@ -111,7 +111,7 @@ public class CGameLayoutTest {
         //Legal diagonal move
         sourceCoords = new TPoint(5,3);
         targetCoords = new TPoint(4,2);
-        testBoard.Move(sourceCoords, targetCoords);
+        testBoard.Move(CGame.getM_gameLayout().GetAt(sourceCoords), CGame.getM_gameLayout().GetAt(targetCoords));
         controlBoard.GetAt(targetCoords).setM_figurine(controlBoard.GetAt(sourceCoords).getM_figurine());
         controlBoard.GetAt(sourceCoords).setM_figurine(null);
         assertTrue(TestHelper.compareContentOfTwoGameLayouts(testBoard,controlBoard));
@@ -119,7 +119,7 @@ public class CGameLayoutTest {
         //Legal horizontal move
         sourceCoords = new TPoint(4,2);
         targetCoords = new TPoint(5,2);
-        testBoard.Move(sourceCoords, targetCoords);
+        testBoard.Move(CGame.getM_gameLayout().GetAt(sourceCoords), CGame.getM_gameLayout().GetAt(targetCoords));
         controlBoard.GetAt(targetCoords).setM_figurine(controlBoard.GetAt(sourceCoords).getM_figurine());
         controlBoard.GetAt(sourceCoords).setM_figurine(null);
         assertTrue(TestHelper.compareContentOfTwoGameLayouts(testBoard,controlBoard));
@@ -127,37 +127,37 @@ public class CGameLayoutTest {
         //Ilegal diagonal move
         sourceCoords = new TPoint(5,2);
         targetCoords = new TPoint(4,3);
-        testBoard.Move(sourceCoords, targetCoords);
+        testBoard.Move(CGame.getM_gameLayout().GetAt(sourceCoords), CGame.getM_gameLayout().GetAt(targetCoords));
         assertTrue(TestHelper.compareContentOfTwoGameLayouts(testBoard,controlBoard));
 
         //Ilegal too far away move
         sourceCoords = new TPoint(6,4);
         targetCoords = new TPoint(4,4);
-        testBoard.Move(sourceCoords, targetCoords);
+        testBoard.Move(CGame.getM_gameLayout().GetAt(sourceCoords), CGame.getM_gameLayout().GetAt(targetCoords));
         assertTrue(TestHelper.compareContentOfTwoGameLayouts(testBoard,controlBoard));
 
         //Ilegal out of bounds move
         sourceCoords = new TPoint(6,4);
         targetCoords = new TPoint(6,5);
-        testBoard.Move(sourceCoords, targetCoords);
+        testBoard.Move(CGame.getM_gameLayout().GetAt(sourceCoords), CGame.getM_gameLayout().GetAt(targetCoords));
         assertTrue(TestHelper.compareContentOfTwoGameLayouts(testBoard,controlBoard));
 
         //Ilegal out of bounds move
         sourceCoords = new TPoint(6,4);
         targetCoords = new TPoint(7,4);
-        testBoard.Move(sourceCoords, targetCoords);
+        testBoard.Move(CGame.getM_gameLayout().GetAt(sourceCoords), CGame.getM_gameLayout().GetAt(targetCoords));
         assertTrue(TestHelper.compareContentOfTwoGameLayouts(testBoard,controlBoard));
 
         //Ilegal out of bounds move
         sourceCoords = new TPoint(6,4);
         targetCoords = new TPoint(6,5);
-        testBoard.Move(sourceCoords, targetCoords);
+        testBoard.Move(CGame.getM_gameLayout().GetAt(sourceCoords), CGame.getM_gameLayout().GetAt(targetCoords));
         assertTrue(TestHelper.compareContentOfTwoGameLayouts(testBoard,controlBoard));
 
         //Legal vertical move
         sourceCoords = new TPoint(6,4);
         targetCoords = new TPoint(6,3);
-        testBoard.Move(sourceCoords, targetCoords);
+        testBoard.Move(CGame.getM_gameLayout().GetAt(sourceCoords), CGame.getM_gameLayout().GetAt(targetCoords));
         controlBoard.GetAt(targetCoords).setM_figurine(controlBoard.GetAt(sourceCoords).getM_figurine());
         controlBoard.GetAt(sourceCoords).setM_figurine(null);
         assertTrue(TestHelper.compareContentOfTwoGameLayouts(testBoard,controlBoard));
@@ -165,13 +165,13 @@ public class CGameLayoutTest {
         //Ilegal move to occupied field
         sourceCoords = new TPoint(6,3);
         targetCoords = new TPoint(6,2);
-        testBoard.Move(sourceCoords, targetCoords);
+        testBoard.Move(CGame.getM_gameLayout().GetAt(sourceCoords), CGame.getM_gameLayout().GetAt(targetCoords));
         assertTrue(TestHelper.compareContentOfTwoGameLayouts(testBoard,controlBoard));
 
         //Ilegal move with nonexistent figurine
         sourceCoords = new TPoint(5,4);
         targetCoords = new TPoint(4,4);
-        testBoard.Move(sourceCoords, targetCoords);
+        testBoard.Move(CGame.getM_gameLayout().GetAt(sourceCoords), CGame.getM_gameLayout().GetAt(targetCoords));
         assertTrue(TestHelper.compareContentOfTwoGameLayouts(testBoard,controlBoard));
     }
 }
