@@ -5,6 +5,7 @@ import DataTypes.TPoint;
 
 public abstract class CFigurine {
     private TFigurineType m_type;
+    private TPoint m_position;
 
     public CFigurine () {
         //TODO
@@ -22,6 +23,8 @@ public abstract class CFigurine {
 
     public CField getAsField() {
         //TODO
+
+
         return null;
     }
 
@@ -50,5 +53,24 @@ public abstract class CFigurine {
         //Setter - DONE
         this.m_type = m_type;
     }
+
+    public TPoint getM_position() {
+        //Getter - DONE
+        return this.m_position;
+    }
+
+    public void setM_position (TPoint position) {
+        //Setter - DONE
+        this.m_position.x = position.x;
+        this.m_position.y = position.y;
+    }
+
+    public void setM_position (int x, int y) {
+        //Setter - DONE
+        this.m_position.x = x;
+        this.m_position.y = y;
+    }
+
+
 
 }
