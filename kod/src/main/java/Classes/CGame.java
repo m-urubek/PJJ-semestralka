@@ -15,15 +15,14 @@ public class CGame {
     private TState m_playerState;
 
     public CGame() {
-        //TODO - On hold
-        this.m_gameLayout = new CGameLayout();
-        this.m_currentPlayerTurn = TCurrentPlayerTurn.Indian;
-        //TODO - Lists of indians and Settlers!
-        this.m_playerState = TState.NotMoved;
+        NewGame();
     }
 
     public void NewGame() {
-        //TODO
+        if (m_gameLayout != null){
+            EndGame();
+        }
+        m_gameLayout = new CGameLayout();
     }
 
     public void EndGame() {

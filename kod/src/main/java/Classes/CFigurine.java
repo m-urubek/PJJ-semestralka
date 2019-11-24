@@ -5,7 +5,7 @@ import DataTypes.TPoint;
 
 public abstract class CFigurine {
     private TFigurineType m_type;
-    private CField m_field;
+    protected CField m_field;
 
     public CFigurine (CField field) {
         //TODO
@@ -46,11 +46,6 @@ public abstract class CFigurine {
     public void setM_type (TFigurineType m_type) {
         //Setter - DONE
         this.m_type = m_type;
-    }
-
-    public CField getM_field() {
-        //Getter - DONE
-        return this.m_field;
     }
 
 
