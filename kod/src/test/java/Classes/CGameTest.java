@@ -67,37 +67,37 @@ public class CGameTest {
         assertEquals(game.getM_playerState(), TState.NotMoved);
 
         //this series of moves should get settler into state canOnlyKill
-        game.getM_gameLayout().Move(new TPoint(4, 6), new TPoint(4, 5));
+        CGame.getM_gameLayout().Move(CGame.getM_gameLayout().GetAt(new TPoint(4,6)),CGame.getM_gameLayout().GetAt(new TPoint(4,5)));
         assertEquals(game.getM_playerState(), TState.Moved);
         game.EndTurn();
         assertEquals(game.getM_playerState(), TState.NotMoved);
-        game.getM_gameLayout().Move(new TPoint(3, 3), new TPoint(3, 4));
+        CGame.getM_gameLayout().Move(CGame.getM_gameLayout().GetAt(new TPoint(3,3)),CGame.getM_gameLayout().GetAt(new TPoint(3,4)));
         assertEquals(game.getM_playerState(), TState.Moved);
         game.EndTurn();
         assertEquals(game.getM_playerState(), TState.NotMoved);
-        game.getM_gameLayout().Move(new TPoint(4, 5), new TPoint(4, 6));
+        CGame.getM_gameLayout().Move(CGame.getM_gameLayout().GetAt(new TPoint(4,5)),CGame.getM_gameLayout().GetAt(new TPoint(4,6)));
         assertEquals(game.getM_playerState(), TState.Moved);
         game.EndTurn();
         assertEquals(game.getM_playerState(), TState.NotMoved);
-        game.getM_gameLayout().Move(new TPoint(3, 2), new TPoint(3, 3));
+        CGame.getM_gameLayout().Move(CGame.getM_gameLayout().GetAt(new TPoint(3,2)),CGame.getM_gameLayout().GetAt(new TPoint(3,3)));
         assertEquals(game.getM_playerState(), TState.Moved);
         game.EndTurn();
         assertEquals(game.getM_playerState(), TState.NotMoved);
-        game.getM_gameLayout().Move(new TPoint(4, 6), new TPoint(4, 5));
+        CGame.getM_gameLayout().Move(CGame.getM_gameLayout().GetAt(new TPoint(4,6)),CGame.getM_gameLayout().GetAt(new TPoint(4,5)));
         assertEquals(game.getM_playerState(), TState.Moved);
         game.EndTurn();
         assertEquals(game.getM_playerState(), TState.NotMoved);
-        game.getM_gameLayout().Move(new TPoint(3, 4), new TPoint(3, 5));
+        CGame.getM_gameLayout().Move(CGame.getM_gameLayout().GetAt(new TPoint(3,4)),CGame.getM_gameLayout().GetAt(new TPoint(3,5)));
         assertEquals(game.getM_playerState(), TState.Moved);
         game.EndTurn();
         assertEquals(game.getM_playerState(), TState.NotMoved);
-        game.getM_gameLayout().Move(new TPoint(3, 6), new TPoint(3, 4));
+        CGame.getM_gameLayout().Move(CGame.getM_gameLayout().GetAt(new TPoint(3,6)),CGame.getM_gameLayout().GetAt(new TPoint(3,4)));
         assertEquals(game.getM_playerState(), TState.CanOnlyKill);
         currentPlayerTurn = game.getM_currentPlayerTurn();
         game.EndTurn();
         assertEquals(game.getM_playerState(), TState.NotMoved);
         assertNotEquals(currentPlayerTurn, game.getM_currentPlayerTurn());  // currentPlayerTurn should be changed because state was CanOnlyKill()
-        assertEquals(null, game.getM_gameLayout().GetAt(new TPoint(3,6)));//settler should get killed
+        assertEquals(null, CGame.getM_gameLayout().GetAt(new TPoint(3,6)));//settler should get killed
         currentPlayerTurn = game.getM_currentPlayerTurn();
         game.EndTurn();
         assertEquals(currentPlayerTurn, game.getM_currentPlayerTurn());  // currentPlayerTurn should not be changed because the EndTurn() should not proceed
