@@ -7,7 +7,7 @@ import DataTypes.TState;
 public class CIndianFigurine extends CFigurine {
 
     public CIndianFigurine (CField field) {
-        //TODO
+        m_field = field;
     }
 
     @Override
@@ -23,9 +23,9 @@ public class CIndianFigurine extends CFigurine {
     }
 
     @Override
-    public void move (CField field) {
+    public void move (CField field) throws Exception{
         //Check side of player
-        if (CGame.m_currentPlayerTurn != TCurrentPlayerTurn.Indian)
+        if (CGame.CurrentPlayerTurn != TCurrentPlayerTurn.Indian)
             return;
         //Indian's move
 
@@ -39,15 +39,16 @@ public class CIndianFigurine extends CFigurine {
         //Moves the figurine
         TPoint oldField = new TPoint(this.m_field.getM_x(), this.m_field.getM_y());
         field.setM_figurine(this);
-        CGame.m_gameLayout.GetAt(oldField).setM_figurine(null);
+        CGame.GameLayout.GetAt(oldField).setM_figurine(null);
 
         //Changes game state
-        CGame.m_playerState = TState.Moved;
+        CGame.PlayerState = TState.Moved;
     }
 
     @Override
     public boolean isLegalMove (CField field) {
         //DONE - TODO Review!
+        System.out.println("Hybu indianem!");
         //Check if out of bounds
         if (    field.getM_x() < 0 ||
                 field.getM_x() >= CGeneralHelper.BOARD_WIDTH ||

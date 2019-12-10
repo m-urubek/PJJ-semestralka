@@ -6,11 +6,11 @@ import DataTypes.TState;
 public class CSettlerFigurine extends CFigurine {
 
     public CSettlerFigurine (CField field) {
-        //TODO
+        m_field = field;
     }
 
 
-    private boolean lookForKill(CField field) {
+    private boolean lookForKill(CField field) throws Exception{
         //DONE
         if ((this.m_field.getM_x() - field.getM_x() == 2) && (this.m_field.getM_y() - field.getM_y() == 2)) {
             int x = this.m_field.getM_x();
@@ -31,9 +31,9 @@ public class CSettlerFigurine extends CFigurine {
         return false;
     }
 
-    public void KillIndian(TPoint coords) {
+    public void KillIndian(TPoint coords) throws Exception{
         //DONE
-        CGame.m_gameLayout.GetAt(coords).setM_figurine(null);
+        CGame.GameLayout.GetAt(coords).setM_figurine(null);
     }
 
 
@@ -50,9 +50,9 @@ public class CSettlerFigurine extends CFigurine {
     }
 
     @Override
-    public void move (CField field) {
+    public void move (CField field) throws Exception{
         //Check side of player
-        if (CGame.m_currentPlayerTurn != TCurrentPlayerTurn.Settler)
+        if (CGame.CurrentPlayerTurn != TCurrentPlayerTurn.Settler)
             return;
         //Settler's move
 
@@ -78,21 +78,21 @@ public class CSettlerFigurine extends CFigurine {
         //Move the figurine
         TPoint oldField = new TPoint(this.m_field.getM_x(), this.m_field.getM_y());
         field.setM_figurine(this);
-        CGame.m_gameLayout.GetAt(oldField).setM_figurine(null);
+        CGame.GameLayout.GetAt(oldField).setM_figurine(null);
         //Change game state
         if (killed) {
-            if (isLegalMove(CGame.m_gameLayout.GetAt(new TPoint(x,y)))) {
-                CGame.m_playerState = TState.CanOnlyKill;
+            if (isLegalMove(CGame.GameLayout.GetAt(new TPoint(x,y)))) {
+                CGame.PlayerState = TState.CanOnlyKill;
             } else {
-                CGame.m_playerState = TState.Moved;
+                CGame.PlayerState = TState.Moved;
             }
         } else {
-            CGame.m_playerState = TState.Moved;
+            CGame.PlayerState = TState.Moved;
         }
     }
 
     @Override
-    public boolean isLegalMove (CField field) {
+    public boolean isLegalMove (CField field) throws Exception{
         //DONE - TODO Review!
         //Check if out of bounds
         if (    field.getM_x() < 0 ||
@@ -132,7 +132,7 @@ public class CSettlerFigurine extends CFigurine {
                 } else {
                     y--;
                 }
-                if (CGame.m_gameLayout.GetAt(new TPoint(x,y)).getM_figurine().getIndianFigurine()==null)
+                if (CGame.GameLayout.GetAt(new TPoint(x,y)).getM_figurine().getIndianFigurine()==null)
                     return false;
             }
             //Check if target field is occupied

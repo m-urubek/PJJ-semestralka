@@ -7,8 +7,37 @@ public class CField {
     private int m_y;
     private CFigurine m_figurine;
 
-    public CField(TPoint coordinates) {
+    private boolean IsOutOfLayout(TPoint point) {
+        if (point.x > 6 || point.x < 0 || point.y > 6 || point.y < 0) {
+            return true;
+        }
+
+        return (point.x == 0 && point.y == 0)
+                || (point.x == 0 && point.y == 1)
+                || (point.x == 1 && point.y == 0)
+                || (point.x == 1 && point.y == 1)
+
+                || (point.x == 5 && point.y == 0)
+                || (point.x == 6 && point.y == 0)
+                || (point.x == 5 && point.y == 1)
+                || (point.x == 6 && point.y == 1)
+
+                || (point.x == 5 && point.y == 5)
+                || (point.x == 6 && point.y == 5)
+                || (point.x == 5 && point.y == 6)
+                || (point.x == 6 && point.y == 6)
+
+                || (point.x == 0 && point.y == 5)
+                || (point.x == 0 && point.y == 6)
+                || (point.x == 1 && point.y == 5)
+                || (point.x == 1 && point.y == 6);
+    }
+
+    public CField(TPoint coordinates) throws Exception {
         //Constructor - DONE
+        if (IsOutOfLayout(coordinates)) {
+            throw new Exception("ERROR - Trying to access coordinates that do not exist.");
+        }
         this.m_x = coordinates.x;
         this.m_y = coordinates.y;
         this.m_figurine = null;

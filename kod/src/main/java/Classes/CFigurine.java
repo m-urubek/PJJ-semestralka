@@ -8,15 +8,9 @@ public abstract class CFigurine {
     private TFigurineType m_type;
     protected CField m_field;
 
-    public CIndianFigurine getIndianFigurine() {
-        //DONE via Override
-        return null;
-    };
+    public abstract CIndianFigurine getIndianFigurine();
 
-    public CSettlerFigurine getSettlerFigurine() {
-        //DONE via Override
-        return null;
-    };
+    public abstract CSettlerFigurine getSettlerFigurine();
 
     /**
      * isLegalMove
@@ -25,9 +19,9 @@ public abstract class CFigurine {
      * @param field   field where the figure is supposed to move
      * @return            	true if the move can be done
      */
-    public abstract boolean isLegalMove (CField field);
+    public abstract boolean isLegalMove (CField field)throws Exception;
 
-    public abstract void move (CField field);
+    public abstract void move (CField field)throws Exception;
 
     public TFigurineType getM_type () {
         //Getter - DONE
