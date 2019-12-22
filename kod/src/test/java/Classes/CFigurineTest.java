@@ -8,9 +8,27 @@ import static org.junit.Assert.*;
 public class CFigurineTest {
 
     @Test
+    public void placeholderTest1() {
+        assertTrue(true);
+    }
+
+    @Test
     public void isLegalMoveIndian() throws Exception {
         CGame game = new CGame();
         TPoint targetCoords = new TPoint(3, 3);
+
+        for (int i = 0; i<33; i++) {
+            if (CGame.GameLayout.GetAt(CGeneralHelper.indexToCoords(i))==null) {
+                System.out.println("N");
+            } else if (CGame.GameLayout.GetAt(CGeneralHelper.indexToCoords(i)).getM_figurine()==null) {
+                System.out.println("E");
+            } else if (CGame.GameLayout.GetAt(CGeneralHelper.indexToCoords(i)).getM_figurine().getSettlerFigurine()!=null) {
+                System.out.println("S");
+            } else if (CGame.GameLayout.GetAt(CGeneralHelper.indexToCoords(i)).getM_figurine().getIndianFigurine()!=null) {
+                System.out.println("I");
+            }
+        }
+
 
         //if (CGame.GameLayout.GetAt(targetCoords).getM_figurine() is CSettlerFigurine){
 
@@ -21,7 +39,7 @@ public class CFigurineTest {
 
 
 
-        CFigurine indianFigure = CGame.GameLayout.GetAt(targetCoords).getM_figurine().getSettlerFigurine();
+        CFigurine indianFigure = CGame.GameLayout.GetAt(targetCoords).getM_figurine().getIndianFigurine();
         assertNotEquals(null, indianFigure);
 
         //Ilegal diagonal move
@@ -87,7 +105,7 @@ public class CFigurineTest {
         targetCoords.y = 9;
         assertFalse(indianFigure.isLegalMove(CGame.GameLayout.GetAt(targetCoords)));
     }
-
+/*
     @Test
     public void isLegalMoveIndianTest() {
         boolean thrown = false;
@@ -197,5 +215,5 @@ public class CFigurineTest {
 
     }
 
-
+*/
 }

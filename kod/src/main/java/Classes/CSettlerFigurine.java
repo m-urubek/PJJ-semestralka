@@ -94,6 +94,10 @@ public class CSettlerFigurine extends CFigurine {
     @Override
     public boolean isLegalMove (CField field) throws Exception{
         //DONE - TODO Review!
+
+        if (field == null) {
+            System.out.println("WTF?");
+        }
         //Check if out of bounds
         if (    field.getM_x() < 0 ||
                 field.getM_x() >= CGeneralHelper.BOARD_WIDTH ||

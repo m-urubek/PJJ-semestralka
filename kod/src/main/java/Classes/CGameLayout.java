@@ -25,59 +25,59 @@ public class CGameLayout {
         this.m_board.add(CGeneralHelper.coordsToIndex(coords), field);
     }
 
-    private void addEmptyField(int x, int y) throws Exception {
-        TPoint coords = new TPoint(x, y);
+    private void addIndianToField(int x, int y) throws Exception {
+        CField field = m_board.get(CGeneralHelper.coordsToIndex(new TPoint(x,y)));
+        field.setM_figurine(new CIndianFigurine(field));
+    }
+    private void addSettlerToField(int x, int y) throws Exception {
+        CField field = m_board.get(CGeneralHelper.coordsToIndex(new TPoint(x,y)));
+        field.setM_figurine(new CSettlerFigurine(field));
+    }
+
+    private CField addEmptyField(TPoint coords) throws Exception {
         CField field = new CField(coords);
         field.setM_figurine(null);
-        this.m_board.add(CGeneralHelper.coordsToIndex(coords), field);
+        return field;
     }
 
     public CGameLayout() throws Exception {
         //TODO - Creates empty game field - TODO Review!!!
         m_board = new ArrayList<CField>(Collections.nCopies(33, null)); //add 33 nulls into the array
 
-        addIndianFigurine(2, 0);
-        addIndianFigurine(3, 0);
+        for (int i = 0; i < 33; i++) {
+            TPoint coords = CGeneralHelper.indexToCoords(i);
+            m_board.add(i, addEmptyField(coords));
+        }
+        addIndianToField(2, 0);
+        addIndianToField(3, 0);
 
-        addIndianFigurine(2, 1);
-        addIndianFigurine(3, 1);
+        addIndianToField(2, 1);
+        addIndianToField(3, 1);
 
-        addIndianFigurine(0, 2);
-        addIndianFigurine(1, 2);
-        addIndianFigurine(2, 2);
-        addIndianFigurine(3, 2);
+        addIndianToField(0, 2);
+        addIndianToField(1, 2);
+        addIndianToField(2, 2);
+        addIndianToField(3, 2);
 
-        addIndianFigurine(0, 3);
-        addIndianFigurine(1, 3);
-        addIndianFigurine(2, 3);
-        addIndianFigurine(3, 3);
+        addIndianToField(0, 3);
+        addIndianToField(1, 3);
+        addIndianToField(2, 3);
+        addIndianToField(3, 3);
 
-        addIndianFigurine(0, 4);
-        addIndianFigurine(1, 4);
-        addIndianFigurine(2, 4);
-        addIndianFigurine(3, 4);
+        addIndianToField(0, 4);
+        addIndianToField(1, 4);
+        addIndianToField(2, 4);
+        addIndianToField(3, 4);
 
-        addIndianFigurine(2, 5);
-        addIndianFigurine(3, 5);
+        addIndianToField(2, 5);
+        addIndianToField(3, 5);
 
-        addIndianFigurine(2, 6);
-        addIndianFigurine(3, 6);
+        addIndianToField(2, 6);
+        addIndianToField(3, 6);
 
-        addSettlerFigurine(6, 2);
-        addSettlerFigurine(6, 3);
-        addSettlerFigurine(6, 4);
-
-        addEmptyField(4, 0);
-        addEmptyField(4, 1);
-        addEmptyField(4, 2);
-        addEmptyField(4, 3);
-        addEmptyField(4, 4);
-        addEmptyField(4, 5);
-        addEmptyField(4, 6);
-
-        addEmptyField(5, 2);
-        addEmptyField(5, 3);
-        addEmptyField(5, 4);
+        addSettlerToField(6, 2);
+        addSettlerToField(6, 3);
+        addSettlerToField(6, 4);
     }
 
     public void DeleteFieldContent(TPoint target) throws Exception {

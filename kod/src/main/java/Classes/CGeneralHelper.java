@@ -61,7 +61,7 @@ public class CGeneralHelper {
             case 25:
                 return new TPoint(5, 4);
             case 26:
-                return new TPoint(5, 4);
+                return new TPoint(6, 4);
             case 27:
                 return new TPoint(2, 5);
             case 28:
