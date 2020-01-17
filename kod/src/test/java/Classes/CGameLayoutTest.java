@@ -1,6 +1,9 @@
 package Classes;
 
+import DataTypes.TCurrentPlayerTurn;
 import DataTypes.TPoint;
+import DataTypes.TState;
+import com.sun.media.jfxmedia.events.PlayerStateEvent;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -11,28 +14,34 @@ public class CGameLayoutTest {
         assertTrue(true);
     }
 
-/*
+
     @Test
     public void testMoveIndian() throws Exception {
-        CGameLayout testBoard = new CGameLayout();
+        CGame game = new CGame();
         CGameLayout controlBoard = new CGameLayout();
+        assertTrue(TestHelper.compareContentOfTwoGameLayouts(CGame.GameLayout, controlBoard));
+        CGame.CurrentPlayerTurn= TCurrentPlayerTurn.Indian;
+
 
         //Legal horizontal move
         TPoint sourceCoords = new TPoint(3, 3);
         TPoint targetCoords = new TPoint(4, 3);
-        testBoard.Move(CGame.GameLayout.GetAt(sourceCoords), CGame.GameLayout.GetAt(targetCoords));
+        CGame.PlayerState = TState.NotMoved;
+        CGame.GameLayout.Move(CGame.GameLayout.GetAt(sourceCoords), CGame.GameLayout.GetAt(targetCoords));
         controlBoard.GetAt(targetCoords).setM_figurine(controlBoard.GetAt(sourceCoords).getM_figurine());
         controlBoard.GetAt(sourceCoords).setM_figurine(null);
-        assertTrue(TestHelper.compareContentOfTwoGameLayouts(testBoard, controlBoard));
+        assertTrue(TestHelper.compareContentOfTwoGameLayouts(CGame.GameLayout, controlBoard));
 
         //Legal vertical move
         sourceCoords = new TPoint(4, 3);
         targetCoords = new TPoint(4, 4);
-        testBoard.Move(CGame.GameLayout.GetAt(sourceCoords), CGame.GameLayout.GetAt(targetCoords));
+        CGame.CurrentPlayerTurn= TCurrentPlayerTurn.Indian;
+        CGame.PlayerState = TState.NotMoved;
+        CGame.GameLayout.Move(CGame.GameLayout.GetAt(sourceCoords), CGame.GameLayout.GetAt(targetCoords));
         controlBoard.GetAt(targetCoords).setM_figurine(controlBoard.GetAt(sourceCoords).getM_figurine());
         controlBoard.GetAt(sourceCoords).setM_figurine(null);
-        assertTrue(TestHelper.compareContentOfTwoGameLayouts(testBoard, controlBoard));
-
+        assertTrue(TestHelper.compareContentOfTwoGameLayouts(CGame.GameLayout, controlBoard));
+/*
         //Legal vertical move
         sourceCoords = new TPoint(4, 4);
         targetCoords = new TPoint(4, 3);
@@ -82,8 +91,9 @@ public class CGameLayoutTest {
         targetCoords = new TPoint(0, 1);
         testBoard.Move(CGame.GameLayout.GetAt(sourceCoords), CGame.GameLayout.GetAt(targetCoords));
         assertTrue(TestHelper.compareContentOfTwoGameLayouts(testBoard, controlBoard));
+        */
     }
-
+/*
     @Test
     public void testMoveSettler() throws Exception {
         CGameLayout testBoard = new CGameLayout();

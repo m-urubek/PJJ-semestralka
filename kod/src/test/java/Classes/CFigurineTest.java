@@ -17,27 +17,6 @@ public class CFigurineTest {
         CGame game = new CGame();
         TPoint targetCoords = new TPoint(3, 3);
 
-        for (int i = 0; i<33; i++) {
-            if (CGame.GameLayout.GetAt(CGeneralHelper.indexToCoords(i))==null) {
-                System.out.println("N");
-            } else if (CGame.GameLayout.GetAt(CGeneralHelper.indexToCoords(i)).getM_figurine()==null) {
-                System.out.println("E");
-            } else if (CGame.GameLayout.GetAt(CGeneralHelper.indexToCoords(i)).getM_figurine().getSettlerFigurine()!=null) {
-                System.out.println("S");
-            } else if (CGame.GameLayout.GetAt(CGeneralHelper.indexToCoords(i)).getM_figurine().getIndianFigurine()!=null) {
-                System.out.println("I");
-            }
-        }
-
-
-        //if (CGame.GameLayout.GetAt(targetCoords).getM_figurine() is CSettlerFigurine){
-
-        //}
-
-        //if getFigurine(coors) is settler
-        //        mojeFigurka = (settler)getFigurine(coors)
-
-
 
         CFigurine indianFigure = CGame.GameLayout.GetAt(targetCoords).getM_figurine().getIndianFigurine();
         assertNotEquals(null, indianFigure);
@@ -89,35 +68,35 @@ public class CFigurineTest {
         targetCoords.x = 2;
         targetCoords.y = 4;
         assertFalse(indianFigure.isLegalMove(CGame.GameLayout.GetAt(targetCoords)));
-/*
+
         //Ilegal move too far away
         targetCoords.x = 2;
-        targetCoords.y = 7;
+        targetCoords.y = 6;
         assertFalse(indianFigure.isLegalMove(CGame.GameLayout.GetAt(targetCoords)));
 
         //Ilegal move out of bounds
         targetCoords.x = -1;
         targetCoords.y = 2;
-        assertFalse(indianFigure.isLegalMove(CGame.GameLayout.GetAt(targetCoords)));
+        boolean testOK = false;
+        try {
+            indianFigure.isLegalMove(CGame.GameLayout.GetAt(targetCoords));
+        } catch (Exception e) {
+            testOK = true;
+        }
+        assertTrue(testOK);
 
         //Ilegal move out of bounds
         targetCoords.x = 2;
         targetCoords.y = 9;
-        assertFalse(indianFigure.isLegalMove(CGame.GameLayout.GetAt(targetCoords)));
-
- */
-    }
-/*
-    @Test
-    public void isLegalMoveIndianTest() {
-        boolean thrown = false;
-        try{
-            isLegalMoveIndian();
-        }catch(Exception ex){
-            thrown = true;
+        testOK = false;
+        try {
+            indianFigure.isLegalMove(CGame.GameLayout.GetAt(targetCoords));
+        } catch (Exception e) {
+            testOK = true;
         }
-        assertTrue(thrown);
+        assertTrue(testOK);
     }
+
 
     @Test
     public void isLegalMoveSettler() throws Exception {
@@ -169,12 +148,25 @@ public class CFigurineTest {
         //Ilegal move out of bounds
         targetCoords.x = 8;
         targetCoords.y = 3;
-        assertFalse(settlerFigure.isLegalMove(CGame.GameLayout.GetAt(targetCoords)));
+        boolean testOK = false;
+        try {
+            settlerFigure.isLegalMove(CGame.GameLayout.GetAt(targetCoords));
+        } catch (Exception e) {
+            testOK = true;
+        }
+        assertTrue(testOK);
 
         //Ilegal move out of bounds
         targetCoords.x = 6;
         targetCoords.y = -1;
-        assertFalse(settlerFigure.isLegalMove(CGame.GameLayout.GetAt(targetCoords)));
+        testOK = false;
+        try {
+            settlerFigure.isLegalMove(CGame.GameLayout.GetAt(targetCoords));
+        } catch (Exception e) {
+            testOK = true;
+        }
+        assertTrue(testOK);
+
     }
 
     @Test
@@ -191,31 +183,19 @@ public class CFigurineTest {
         CField field = CGame.GameLayout.GetAt(new TPoint(5, 3));
         field.setM_figurine(new CSettlerFigurine(field));
 
-        CFigurine settler = CGame.GameLayout.GetAt(new TPoint(6, 2)).getM_figurine();
-
+        CFigurine settler = CGame.GameLayout.GetAt(new TPoint(5, 3)).getM_figurine().getSettlerFigurine();
+        assertNotEquals(null, settler);
 
         assertTrue(settler.isLegalMove(CGame.GameLayout.GetAt(new TPoint(4, 4))));
-        assertTrue(settler.isLegalMove(CGame.GameLayout.GetAt(new TPoint(2, 2))));
-        assertTrue(settler.isLegalMove(CGame.GameLayout.GetAt(new TPoint(0, 4))));
 
-
-        settler = CGame.GameLayout.GetAt(new TPoint(6, 4)).getM_figurine();
-
-        assertTrue(settler.isLegalMove(CGame.GameLayout.GetAt(new TPoint(4, 2))));
-        assertTrue(settler.isLegalMove(CGame.GameLayout.GetAt(new TPoint(2, 4))));
-        assertTrue(settler.isLegalMove(CGame.GameLayout.GetAt(new TPoint(0, 2))));
-
-        field = CGame.GameLayout.GetAt(new TPoint(5, 4));
+        field = CGame.GameLayout.GetAt(new TPoint(4, 4));
         field.setM_figurine(new CSettlerFigurine(field));
-        field = CGame.GameLayout.GetAt(new TPoint(4, 3));
-        field.setM_figurine(new CIndianFigurine(field));
-        CGame.GameLayout.GetAt(new TPoint(3, 2)).setM_figurine(null);
-
-        settler = CGame.GameLayout.GetAt(new TPoint(5, 4)).getM_figurine();
-
-        assertTrue(settler.isLegalMove(CGame.GameLayout.GetAt(new TPoint(3, 2))));
+        settler = CGame.GameLayout.GetAt(new TPoint(4, 4)).getM_figurine().getSettlerFigurine();
+        assertNotEquals(null, settler);
+        assertTrue(settler.isLegalMove(CGame.GameLayout.GetAt(new TPoint(2, 2))));
+        assertFalse(settler.isLegalMove(CGame.GameLayout.GetAt(new TPoint(0, 4))));
 
     }
 
-*/
+
 }

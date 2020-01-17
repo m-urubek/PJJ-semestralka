@@ -47,8 +47,7 @@ public class CIndianFigurine extends CFigurine {
 
     @Override
     public boolean isLegalMove (CField field) {
-        //DONE - TODO Review!
-        System.out.println("Hybu indianem!");
+        //DONE
         //Check if out of bounds
         if (    field.getM_x() < 0 ||
                 field.getM_x() >= CGeneralHelper.BOARD_WIDTH ||
@@ -56,7 +55,6 @@ public class CIndianFigurine extends CFigurine {
                 field.getM_y() >=CGeneralHelper.BOARD_WIDTH)
             return false;
         //Check if out of bounds
-        //TODO - Those numbers (2 and 4) should be CONSTANTS but I don't care right now
         if (    (field.getM_x() < 2 && field.getM_y() < 2) ||
                 (field.getM_x() < 2 && field.getM_y() > 4) ||
                 (field.getM_x() > 4 && field.getM_y() < 2) ||
