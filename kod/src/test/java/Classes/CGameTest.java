@@ -13,14 +13,14 @@ public class CGameTest {
     public void placeholderTest3() {
         assertTrue(true);
     }
-/*
+
     @Test
     public void newGameTestForExistingGameLayoutInstance() throws Exception {
         CGame game = new CGame();  //constructor should call NewGame() method and initialize all game objects
 
         assertNotNull(game.GameLayout);
     }
-
+/* TODO - Martin
     @Test
     public void newGameTestForFigurinesLists() throws Exception {
         CGame game = new CGame();  //constructor should call NewGame() method and initialize all game objects
@@ -31,7 +31,8 @@ public class CGameTest {
         assertEquals(numberOfSettlerFigurines, 3);
         assertEquals(numberOfIndianFigurines, 20);
     }
-
+*/
+/*
     @Test
     public void newGameTestForFigurinesPlacement() throws Exception {
         CGame game = new CGame();  //constructor should call NewGame() method and initialize all game objects
@@ -59,7 +60,7 @@ public class CGameTest {
             }
         }
     }
-
+*//*
     @Test
     public void endTurnTestForPossibilityOfEndingTheTurn() throws Exception {
         CGame game = new CGame();
@@ -106,6 +107,5 @@ public class CGameTest {
         game.EndTurn();
         assertEquals(currentPlayerTurn, game.CurrentPlayerTurn);  // currentPlayerTurn should not be changed because the EndTurn() should not proceed
     }
-
- */
+    */
 }

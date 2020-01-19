@@ -76,9 +76,11 @@ public class CSettlerFigurine extends CFigurine {
         }
 
         //Move the figurine
-        TPoint oldField = new TPoint(this.m_field.getM_x(), this.m_field.getM_y());
+        TPoint oldFieldCoords = new TPoint(this.m_field.getM_x(), this.m_field.getM_y());
         field.setM_figurine(this);
-        CGame.GameLayout.GetAt(oldField).setM_figurine(null);
+        CGame.GameLayout.GetAt(oldFieldCoords).setM_figurine(null);
+        this.m_field = field;
+
         //Change game state
         if (killed) {
             if (isLegalMove(CGame.GameLayout.GetAt(new TPoint(x,y)))) {
@@ -94,27 +96,25 @@ public class CSettlerFigurine extends CFigurine {
     @Override
     public boolean isLegalMove (CField field) throws Exception{
         //DONE - TODO Review!
-
-        if (field == null) {
-            System.out.println("WTF?");
-        }
+        System.out.println("----------------------------\nState 1");
         //Check if out of bounds
         if (    field.getM_x() < 0 ||
                 field.getM_x() >= CGeneralHelper.BOARD_WIDTH ||
                 field.getM_y() < 0 ||
                 field.getM_y() >=CGeneralHelper.BOARD_WIDTH)
             return false;
+        System.out.println("State 2");
         //Check if out of bounds
         if (    (field.getM_x() < 2 && field.getM_y() < 2) ||
                 (field.getM_x() < 2 && field.getM_y() > 4) ||
                 (field.getM_x() > 4 && field.getM_y() < 2) ||
                 (field.getM_x() > 4 && field.getM_y() > 4))
             return false;
-
+        System.out.println("State 3");
         //Check if diagonal move is possible
         if ( (this.m_field.getM_x() % 2) == (this.m_field.getM_y() % 2) ) {
             //Can move diagonally
-
+            System.out.println("State 4");
             //Check if moving too far away
             if (Math.abs(field.getM_x() - this.m_field.getM_x()) > 1 || Math.abs(field.getM_y() - this.m_field.getM_y()) > 1) {
                 //Moving too far away may indicate killing enemy figure
@@ -139,16 +139,19 @@ public class CSettlerFigurine extends CFigurine {
                     return false;
             }
             //Check if target field is occupied
+            System.out.println("State 5");
             return field.getM_figurine() == null;
         } else {
             //Can not move diagonally
-
+            System.out.println("State 6");
             //Check if moving too far away
             if (Math.abs(field.getM_x() - this.m_field.getM_x()) > 1 || Math.abs(field.getM_y() - this.m_field.getM_y()) > 1)
                 return false;
+            System.out.println("State 7");
             //Check if moving diagonally
             if (field.getM_x() != this.m_field.getM_x() && field.getM_y() != this.m_field.getM_y())
                 return false;
+            System.out.println("State 8");
             //Check if target field is occupied
             return field.getM_figurine() == null;
         }

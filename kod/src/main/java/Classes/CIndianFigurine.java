@@ -40,6 +40,7 @@ public class CIndianFigurine extends CFigurine {
         TPoint oldField = new TPoint(this.m_field.getM_x(), this.m_field.getM_y());
         field.setM_figurine(this);
         CGame.GameLayout.GetAt(oldField).setM_figurine(null);
+        this.m_field = field;
 
         //Changes game state
         CGame.PlayerState = TState.Moved;
