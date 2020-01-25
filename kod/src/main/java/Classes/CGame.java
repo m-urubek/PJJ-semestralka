@@ -4,6 +4,7 @@ import DataTypes.TCurrentPlayerTurn;
 import DataTypes.TPoint;
 import DataTypes.TState;
 
+import java.io.*;
 import java.util.List;
 
 public class CGame {
@@ -28,6 +29,120 @@ public class CGame {
 
     public static void EndGame() {
         //TODO
+    }
+
+    public void SaveGame() {
+        String toSave = "";
+        if (CGame.CurrentPlayerTurn == TCurrentPlayerTurn.Indian) {
+            toSave+="S";
+        } else {
+            toSave+="I";
+        }
+
+        if (CGame.PlayerState == TState.NotMoved) {
+            toSave+="N";
+        } else if (CGame.PlayerState == TState.CanOnlyKill) {
+            toSave+="C";
+        } else {
+            toSave+="M";
+        }
+
+        if (CGame.GameLayout.getM_currentlySelectedFigurine() == null) {
+            toSave+="EE";
+        } else {
+            toSave = toSave +CGame.GameLayout.getM_currentlySelectedFigurine().m_field.getM_x() + CGame.GameLayout.getM_currentlySelectedFigurine().m_field.getM_y();
+        }
+
+        toSave+=CGame.GameLayout.SaveGame();
+
+        try {
+            FileOutputStream outputStream = new FileOutputStream("Save.txt");
+
+            outputStream.write(toSave.getBytes());
+
+            outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void LoadGame() {
+
+        try {
+            NewGame();
+            File file = new File("Save.txt");
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String toLoad;
+            if ((toLoad = br.readLine()) == null || toLoad.length()!=37) {
+                throw new IOException("");
+            }
+
+            switch (toLoad.charAt(0)) {
+                case 'I':
+                    CGame.CurrentPlayerTurn=TCurrentPlayerTurn.Indian;
+                    break;
+                case 'S':
+                    CGame.CurrentPlayerTurn=TCurrentPlayerTurn.Settler;
+                    break;
+                default:
+                    throw new IOException("");
+            }
+
+            switch (toLoad.charAt(1)) {
+                case 'N':
+                    CGame.PlayerState=TState.NotMoved;
+                    break;
+                case 'C':
+                    CGame.PlayerState=TState.CanOnlyKill;
+                    break;
+                case 'M':
+                    CGame.PlayerState=TState.Moved;
+                    break;
+                default:
+                    throw new IOException("");
+            }
+            TPoint selectedCoords = new TPoint(-1, -1);
+            if (toLoad.charAt(2) != 'E') {
+                selectedCoords.x = toLoad.charAt(2)-'0';
+            }
+            if (toLoad.charAt(3) != 'E') {
+                selectedCoords.y = toLoad.charAt(3)-'0';
+            }
+
+            for (int i = 4; i<toLoad.length(); i++) {
+                CField field = CGame.GameLayout.GetAt(CGeneralHelper.indexToCoords(i-4));
+                switch (toLoad.charAt(i)) {
+                    case 'i':
+                        field.setM_figurine(new CIndianFigurine(field));
+                        break;
+                    case 's':
+                        field.setM_figurine(new CSettlerFigurine(field));
+                        break;
+                    case 'e':
+                        field.setM_figurine(null);
+                        break;
+                    default:
+                        throw new IOException("");
+                }
+            }
+
+            if (selectedCoords.x >= 0 && selectedCoords.y >= 0) {
+                CGame.GameLayout.setM_currentlySelectedFigurine(CGame.GameLayout.GetAt(selectedCoords).getM_figurine());
+            } else {
+                CGame.GameLayout.setM_currentlySelectedFigurine(null);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            try {
+                NewGame();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     private static void testremainingKillAndRemove(CSettlerFigurine currentFigurine, int x, int y) throws Exception{

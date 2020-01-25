@@ -142,4 +142,18 @@ public class CGameLayout {
         //Setter - DONE
         this.m_currentlySelectedFigurine = m_currentlySelectedFigurine;
     }
+
+    public String SaveGame() {
+        String string = "";
+        for (int i=0; i<33; i++) {
+            if (this.m_board.get(i).getM_figurine() == null) {
+                string += ("e");
+            } else if (this.m_board.get(i).getM_figurine().getSettlerFigurine() != null) {
+                string +=("s");
+            } else {
+                string +=("i");
+            }
+        }
+        return string;
+    }
 }
