@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=CIndianFigurine
+comment1.params=field
+comment1.target=CIndianFigurine(CField)
+comment2.params=
+comment2.target=CIndianFigurine\ getIndianFigurine()
+comment3.params=
+comment3.target=CSettlerFigurine\ getSettlerFigurine()
+comment4.params=field
+comment4.target=void\ move(CField)
+comment5.params=field
+comment5.target=boolean\ isLegalMove(CField)
+numComments=6

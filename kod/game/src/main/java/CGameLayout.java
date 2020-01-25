@@ -1,5 +1,3 @@
-package Classes;
-
 import DataTypes.TPoint;
 import DataTypes.TState;
 

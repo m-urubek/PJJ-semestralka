@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=CSettlerFigurine
+comment1.params=field
+comment1.target=CSettlerFigurine(CField)
+comment2.params=field
+comment2.target=boolean\ lookForKill(CField)
+comment3.params=coords
+comment3.target=void\ KillIndian(DataTypes.TPoint)
+comment4.params=
+comment4.target=CIndianFigurine\ getIndianFigurine()
+comment5.params=
+comment5.target=CSettlerFigurine\ getSettlerFigurine()
+comment6.params=field
+comment6.target=void\ move(CField)
+comment7.params=field
+comment7.target=boolean\ isLegalMove(CField)
+numComments=8

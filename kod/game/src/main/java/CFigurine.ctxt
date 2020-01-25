@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=CFigurine
+comment1.params=
+comment1.target=CIndianFigurine\ getIndianFigurine()
+comment2.params=
+comment2.target=CSettlerFigurine\ getSettlerFigurine()
+comment3.params=field
+comment3.target=boolean\ isLegalMove(CField)
+comment3.text=\r\n\ isLegalMove\r\n\ Checks\ if\ figurine\ move\ is\ valid.\r\n\r\n\ @param\ field\ \ \ field\ where\ the\ figure\ is\ supposed\ to\ move\r\n\ @return\ \ \ \ \ \ \ \ \ \ \ \ \ttrue\ if\ the\ move\ can\ be\ done\r\n
+comment4.params=field
+comment4.target=void\ move(CField)
+comment5.params=
+comment5.target=DataTypes.TFigurineType\ getM_type()
+comment6.params=m_type
+comment6.target=void\ setM_type(DataTypes.TFigurineType)
+numComments=7

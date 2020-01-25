@@ -1,13 +1,14 @@
-package Classes;
+import greenfoot.*;
 
 import DataTypes.TCurrentPlayerTurn;
 import DataTypes.TPoint;
 import DataTypes.TState;
+import greenfoot.World;
 
 import java.io.*;
 import java.util.List;
 
-public class CGame {
+public class CGame extends World {
     public static CGameLayout GameLayout;
     public static TCurrentPlayerTurn CurrentPlayerTurn;
     public static List<CIndianFigurine> IndianFigurines;
@@ -15,6 +16,12 @@ public class CGame {
     public static TState PlayerState;
 
     public CGame() throws Exception {
+        super(991,687,1);
+        setBackground(new GreenfootImage("background.png"));
+        addObject(new ButtonNewGame(), 92, 46);
+        addObject(new ButtonEndTurn(), 900, 46);
+        addObject(new ButtonEndGame(), 900, 641);
+
         if (GameLayout == null) {
             NewGame();
         }
@@ -28,7 +35,7 @@ public class CGame {
     }
 
     public static void EndGame() {
-        //TODO
+        System.exit(0);
     }
 
     public void SaveGame() {

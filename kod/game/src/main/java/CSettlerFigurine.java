@@ -1,4 +1,3 @@
-package Classes;
 import DataTypes.TCurrentPlayerTurn;
 import DataTypes.TPoint;
 import DataTypes.TState;

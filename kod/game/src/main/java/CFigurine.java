@@ -1,10 +1,7 @@
-package Classes;
-
-import DataTypes.TCurrentPlayerTurn;
 import DataTypes.TFigurineType;
-import DataTypes.TPoint;
+import greenfoot.Actor;
 
-public abstract class CFigurine {
+public abstract class CFigurine extends Actor {
     private TFigurineType m_type;
     protected CField m_field;
 

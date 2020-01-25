@@ -1,8 +1,7 @@
-package Classes;
-
 import DataTypes.TPoint;
+import greenfoot.Actor;
 
-public class CField {
+public class CField extends Actor {
     private int m_x;
     private int m_y;
     private CFigurine m_figurine;

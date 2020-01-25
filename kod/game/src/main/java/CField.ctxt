@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=CField
+comment1.params=point
+comment1.target=boolean\ IsOutOfLayout(DataTypes.TPoint)
+comment2.params=coordinates
+comment2.target=CField(DataTypes.TPoint)
+comment3.params=coordinates\ figurine
+comment3.target=CField(DataTypes.TPoint,\ CFigurine)
+comment4.params=
+comment4.target=int\ getM_x()
+comment5.params=
+comment5.target=int\ getM_y()
+comment6.params=
+comment6.target=CFigurine\ getM_figurine()
+comment7.params=m_figurine
+comment7.target=void\ setM_figurine(CFigurine)
+numComments=8

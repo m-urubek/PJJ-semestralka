@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=CGeneralHelper
+comment1.params=index
+comment1.target=DataTypes.TPoint\ indexToCoords(int)
+comment2.params=coords
+comment2.target=int\ coordsToIndex(DataTypes.TPoint)
+numComments=3
