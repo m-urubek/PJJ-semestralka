@@ -239,4 +239,31 @@ public class CGeneralHelper {
         CGame.world.addObject(new MessageDialog(dialogType, text, CGame.world.getWidth(), CGame.world.getHeight()), CGame.world.getWidth() / 2, CGame.world.getHeight() / 2);
     }
 
+    public static boolean FieldHasIndian(int x, int y) throws Exception {
+        CFigurine figurine = CGame.GameLayout.GetAt(new TPoint(x, y)).getM_figurine();
+        return figurine instanceof CIndianFigurine;
+    }
+
+    public static void CheckAndEndGame() throws Exception {
+
+        if (FieldHasIndian(4, 2) &&
+                FieldHasIndian(5, 2) &&
+                FieldHasIndian(6, 2) &&
+                FieldHasIndian(4, 3) &&
+                FieldHasIndian(5, 3) &&
+                FieldHasIndian(6, 3) &&
+                FieldHasIndian(4, 4) &&
+                FieldHasIndian(5, 4) &&
+                FieldHasIndian(6, 4)
+        ) {
+            ShowDialog(TDialogType.PlayerWon, "Hráč Indián vyhrává!");
+            CGame.EndGame();
+        }
+
+        if (CGame.IndianFigurines.size() < 9){
+            ShowDialog(TDialogType.PlayerWon, "Hráč Osadník vyhrává!");
+            CGame.EndGame();
+        }
+    }
+
 }

@@ -78,6 +78,7 @@ public class CSettlerFigurine extends CFigurine {
                 CGame.PlayerState = TState.KilledSomeone;
             }
         }
+        CGeneralHelper.CheckAndEndGame();
     }
 
     @Override
