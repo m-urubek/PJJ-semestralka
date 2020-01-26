@@ -32,9 +32,10 @@ public class CSettlerFigurine extends CFigurine {
 
     public void KillIndian(TPoint coords) throws Exception{
         //DONE
+        System.out.println("Kill!!!");
+        CGame.IndianFigurines.remove(CGame.GameLayout.GetAt(coords).getM_figurine().getIndianFigurine());
         CGame.instance.removeObject(CGame.GameLayout.GetAt(coords).getM_figurine());
         CGame.GameLayout.GetAt(coords).setM_figurine(null);
-
     }
 
 
@@ -84,6 +85,7 @@ public class CSettlerFigurine extends CFigurine {
 
         //Change game state
         if (killed) {
+            System.out.println("Kill");
             if (isLegalMove(CGame.GameLayout.GetAt(new TPoint(x,y)))) {
                 CGame.PlayerState = TState.CanOnlyKill;
             } else {
@@ -95,7 +97,7 @@ public class CSettlerFigurine extends CFigurine {
     }
 
     @Override
-    public boolean isLegalMove (CField field) throws Exception{
+    public boolean isLegalMove (CField field) {
         //DONE - TODO Review!
         //Check if out of bounds
         if (    field.getM_x() < 0 ||
@@ -132,8 +134,12 @@ public class CSettlerFigurine extends CFigurine {
                 } else {
                     y--;
                 }
-                if (CGame.GameLayout.GetAt(new TPoint(x,y)).getM_figurine().getIndianFigurine()==null)
+                try {
+                    if (CGame.GameLayout.GetAt(new TPoint(x,y)).getM_figurine().getIndianFigurine()==null)
+                        return false;
+                } catch (Exception e) {
                     return false;
+                }
             }
             //Check if target field is occupied
             return field.getM_figurine() == null;

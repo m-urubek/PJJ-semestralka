@@ -7,6 +7,7 @@ import DataTypes.TState;
 
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CGame extends World {
@@ -23,6 +24,10 @@ public class CGame extends World {
     public CGame() {
         super(991,687,1);
         instance = this;
+        world = this;
+        IndianFigurines = new ArrayList<CIndianFigurine>();
+        SettlerFigurines = new ArrayList<CSettlerFigurine>();
+
         setBackground(new GreenfootImage("background.png"));
         addObject(new ButtonNewGame(), 92, 46);
         addObject(new ButtonEndTurn(), 900, 46);
@@ -37,7 +42,6 @@ public class CGame extends World {
         } catch (Exception e) {
             addObject(new MessageDialog(DataTypes.TDialogType.Error, e.getMessage(), this.getWidth(), this.getHeight()), this.getWidth()/2, this.getHeight()/2);
         }
-        world = this;
     }
 
 
@@ -167,24 +171,31 @@ public class CGame extends World {
 
     }
 
-    private static void testremainingKillAndRemove(CSettlerFigurine currentFigurine, int x, int y) throws Exception{
+    private static void testremainingKillAndRemove(CSettlerFigurine currentFigurine, int x, int y) {
+        if (currentFigurine == null) {
+            return;
+        }
+
         TPoint point = new TPoint(x, y);
         CField field = null;
         try {
             field = CGame.GameLayout.GetAt(point);
+
         } catch (Exception ex) {
             return;
         }
         if (currentFigurine.isLegalMove(field)) {
             CGame.SettlerFigurines.remove(currentFigurine);
-            GameLayout.DeleteFieldContent(currentFigurine.m_field);
+            CGame.instance.removeObject(field.getM_figurine());
+            field.setM_figurine(null);
         }
+
     }
 
     public static void EndTurn() throws Exception{
         //DONE
         if (CGame.PlayerState!=TState.NotMoved) {
-            /*for (CSettlerFigurine currentFigurine : CGame.SettlerFigurines) {
+            for (CSettlerFigurine currentFigurine : CGame.SettlerFigurines) {
                 testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x() + 2, currentFigurine.m_field.getM_y());
                 testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y());
                 testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x(), currentFigurine.m_field.getM_y() + 2);
@@ -193,8 +204,9 @@ public class CGame extends World {
                 testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x() + 2, currentFigurine.m_field.getM_y() - 2);
                 testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y() - 2);
                 testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y() + 2);
-            }*/
-            if (CGame.CurrentPlayerTurn == TCurrentPlayerTurn.Indian) {
+            }
+
+             if (CGame.CurrentPlayerTurn == TCurrentPlayerTurn.Indian) {
                 CGame.CurrentPlayerTurn = TCurrentPlayerTurn.Settler;
                 currentPlayerGame.setImage(new GreenfootImage("current_player_settler.png"));
                 world.addObject(new MessageDialog(TDialogType.RedEndedTurn, "Hráč Indiáni ukončil svůj tah. Na řadě je hráč Osadníci", world.getWidth(), world.getHeight()), world.getWidth()/2, world.getHeight()/2);
