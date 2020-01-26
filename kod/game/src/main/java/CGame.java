@@ -183,7 +183,7 @@ public class CGame extends World {
     }
 
     private static void testRemainingKillAndRemove(CSettlerFigurine currentFigurine, int x, int y) {
-        if (currentFigurine == null) {
+        if (currentFigurine == null || currentFigurine.m_field == null) {
             return;
         }
 
@@ -214,7 +214,7 @@ public class CGame extends World {
                     }
                     testForRemainingKillsAndRemove(figurine);
                 }
-                if (CGame.PlayerState != TState.KilledSomeone) {
+                if (CGame.PlayerState == TState.KilledSomeone) {
                     CSettlerFigurine currentlySelectedFigurine = (CSettlerFigurine) CGame.GameLayout.getM_currentlySelectedFigurine();
                     testForRemainingKillsAndRemove(currentlySelectedFigurine);
                 }
