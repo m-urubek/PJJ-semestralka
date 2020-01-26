@@ -197,8 +197,8 @@ public class CGame extends World {
         if (currentFigurine.isLegalMove(field)) {
             System.out.println("kill settler");
             CGame.SettlerFigurines.remove(currentFigurine);
-            CGame.instance.removeObject(field.getM_figurine());
-            field.setM_figurine(null);
+            CGame.instance.removeObject(currentFigurine);
+            currentFigurine.m_field.setM_figurine(null);
         }
 
     }
