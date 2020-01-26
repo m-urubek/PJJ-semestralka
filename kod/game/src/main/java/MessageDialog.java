@@ -29,10 +29,16 @@ public class MessageDialog extends Actor {
         _width = width;
         _height = height;
         if (dialogType == TDialogType.Error) {
-            this.inner = new GreenfootImage(insertNewLines(text), 30, Color.RED, new Color(0, 0, 0, 180));
+            this.inner = new GreenfootImage(insertNewLines(text), 30, Color.RED, new Color(180, 0, 0, 180));
         }
         if (dialogType == TDialogType.PlayerWon) {
-            this.inner = new GreenfootImage(text, 50, Color.RED, new Color(0, 0, 0, 180));
+            this.inner = new GreenfootImage(text, 40, Color.RED, new Color(0, 0, 0, 180));
+        }
+        if (dialogType == TDialogType.RedEndedTurn) {
+            this.inner = new GreenfootImage(text, 40, Color.BLUE, new Color(0, 0, 0, 180));
+        }
+        if (dialogType == TDialogType.BlueEndedTurn) {
+            this.inner = new GreenfootImage(text, 40, Color.RED, new Color(0, 0, 0, 180));
         }
         // inner.scale(width, height);
     }

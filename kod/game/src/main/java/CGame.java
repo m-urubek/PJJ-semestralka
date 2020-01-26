@@ -1,3 +1,4 @@
+import DataTypes.TDialogType;
 import greenfoot.*;
 
 import DataTypes.TCurrentPlayerTurn;
@@ -11,6 +12,7 @@ import java.util.List;
 public class CGame extends World {
     public static CGame instance = null;
 
+    public static World world;
     public static CGameLayout GameLayout;
     public static TCurrentPlayerTurn CurrentPlayerTurn;
     public static List<CIndianFigurine> IndianFigurines;
@@ -35,6 +37,7 @@ public class CGame extends World {
         } catch (Exception e) {
             addObject(new MessageDialog(DataTypes.TDialogType.Error, e.getMessage(), this.getWidth(), this.getHeight()), this.getWidth()/2, this.getHeight()/2);
         }
+        world = this;
     }
 
 
@@ -194,9 +197,11 @@ public class CGame extends World {
             if (CGame.CurrentPlayerTurn == TCurrentPlayerTurn.Indian) {
                 CGame.CurrentPlayerTurn = TCurrentPlayerTurn.Settler;
                 currentPlayerGame.setImage(new GreenfootImage("current_player_settler.png"));
+                world.addObject(new MessageDialog(TDialogType.RedEndedTurn, "Hráč Indiáni ukončil svůj tah. Na řadě je hráč Osadníci", world.getWidth(), world.getHeight()), world.getWidth()/2, world.getHeight()/2);
             } else {
                 CGame.CurrentPlayerTurn = TCurrentPlayerTurn.Indian;
                 currentPlayerGame.setImage(new GreenfootImage("current_player_indian.png"));
+                world.addObject(new MessageDialog(TDialogType.BlueEndedTurn, "Hráč Osadníci ukončil svůj tah. Na řadě je hráč Indiáni", world.getWidth(), world.getHeight()), world.getWidth()/2, world.getHeight()/2);
             }
             CGame.PlayerState=TState.NotMoved;
         }
