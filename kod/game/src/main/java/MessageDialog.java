@@ -32,7 +32,7 @@ public class MessageDialog extends Actor {
             this.inner = new GreenfootImage(insertNewLines(text), 30, Color.RED, new Color(180, 0, 0, 180));
         }
         if (dialogType == TDialogType.PlayerWon) {
-            this.inner = new GreenfootImage(text, 40, Color.RED, new Color(0, 0, 0, 180));
+            this.inner = new GreenfootImage(text, 80, Color.GREEN, new Color(0, 0, 0, 180));
         }
         if (dialogType == TDialogType.RedEndedTurn) {
             this.inner = new GreenfootImage(text, 40, Color.BLUE, new Color(0, 0, 0, 180));
