@@ -42,7 +42,7 @@ public class CField extends Actor {
         } else {
             //TOTEST - Players wants to (re)select figurine
             //Check game state
-            if (CGame.PlayerState == TState.CanOnlyKill) {
+            if (CGame.PlayerState == TState.KilledSomeone) {
                 //Player can only move by currently selected figurine
                 return;
             }

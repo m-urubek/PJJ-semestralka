@@ -2,6 +2,6 @@ package DataTypes;
 
 public enum TState {
     NotMoved,
-    CanOnlyKill,
+    KilledSomeone,
     Moved
 }

@@ -67,7 +67,7 @@ public class CGame extends World {
 
         if (CGame.PlayerState == TState.NotMoved) {
             toSave+="N";
-        } else if (CGame.PlayerState == TState.CanOnlyKill) {
+        } else if (CGame.PlayerState == TState.KilledSomeone) {
             toSave+="C";
         } else {
             toSave+="M";
@@ -119,7 +119,7 @@ public class CGame extends World {
                     CGame.PlayerState=TState.NotMoved;
                     break;
                 case 'C':
-                    CGame.PlayerState=TState.CanOnlyKill;
+                    CGame.PlayerState=TState.KilledSomeone;
                     break;
                 case 'M':
                     CGame.PlayerState=TState.Moved;
@@ -195,17 +195,18 @@ public class CGame extends World {
     public static void EndTurn() throws Exception{
         //DONE
         if (CGame.PlayerState!=TState.NotMoved) {
-            for (CSettlerFigurine currentFigurine : CGame.SettlerFigurines) {
-                testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x() + 2, currentFigurine.m_field.getM_y());
-                testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y());
-                testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x(), currentFigurine.m_field.getM_y() + 2);
-                testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x(), currentFigurine.m_field.getM_y() - 2);
-                testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x() + 2, currentFigurine.m_field.getM_y() + 2);
-                testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x() + 2, currentFigurine.m_field.getM_y() - 2);
-                testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y() - 2);
-                testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y() + 2);
+            if (CGame.PlayerState == TState.KilledSomeone) {
+                for (CSettlerFigurine currentFigurine : CGame.SettlerFigurines) {
+                    testremainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x() + 2, currentFigurine.m_field.getM_y());
+                    testremainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y());
+                    testremainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x(), currentFigurine.m_field.getM_y() + 2);
+                    testremainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x(), currentFigurine.m_field.getM_y() - 2);
+                    testremainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x() + 2, currentFigurine.m_field.getM_y() + 2);
+                    testremainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x() + 2, currentFigurine.m_field.getM_y() - 2);
+                    testremainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y() - 2);
+                    testremainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y() + 2);
+                }
             }
-
              if (CGame.CurrentPlayerTurn == TCurrentPlayerTurn.Indian) {
                 CGame.CurrentPlayerTurn = TCurrentPlayerTurn.Settler;
                 currentPlayerGame.setImage(new GreenfootImage("current_player_settler.png"));

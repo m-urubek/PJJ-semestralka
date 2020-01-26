@@ -11,6 +11,7 @@ public class CSettlerFigurine extends CFigurine {
 
     private boolean lookForKill(CField field) throws Exception{
         //DONE
+        System.out.println("Kill");
         if ((this.m_field.getM_x() - field.getM_x() == 2) && (this.m_field.getM_y() - field.getM_y() == 2)) {
             int x = this.m_field.getM_x();
             int y = this.m_field.getM_y();
@@ -68,15 +69,6 @@ public class CSettlerFigurine extends CFigurine {
         //Check if indian should be killed and kill him
         boolean killed = lookForKill(field);
 
-        //Get coords of next possible kill
-        int x = this.m_field.getM_x();
-        int y = this.m_field.getM_y();
-        if (field.getM_x() > x) {
-            x+=4;
-        } else {
-            x-=4;
-        }
-
         //Move the figurine
         TPoint oldFieldCoords = new TPoint(this.m_field.getM_x(), this.m_field.getM_y());
         field.setM_figurine(this);
@@ -85,12 +77,12 @@ public class CSettlerFigurine extends CFigurine {
 
         //Change game state
         if (killed) {
-            System.out.println("Kill");
-            if (isLegalMove(CGame.GameLayout.GetAt(new TPoint(x,y)))) {
-                CGame.PlayerState = TState.CanOnlyKill;
+            if (isLegalMove(CGame.GameLayout.GetAt(new TPoint(this.m_field.getM_x()-2, this.m_field.getM_y()-2))) || isLegalMove(CGame.GameLayout.GetAt(new TPoint(this.m_field.getM_x()-2, this.m_field.getM_y()+2)))) {
+                CGame.PlayerState = TState.KilledSomeone;
             } else {
                 CGame.PlayerState = TState.Moved;
             }
+
         } else {
             CGame.PlayerState = TState.Moved;
         }

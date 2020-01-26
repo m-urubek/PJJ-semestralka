@@ -93,9 +93,6 @@ public class CGameLayout {
         addSettlerToField(6, 4);
     }
 
-    public void DeleteFieldContent(TPoint target) throws Exception {
-        m_board.get(CGeneralHelper.coordsToIndex(target)).setM_figurine(null);
-    }
 
     public CField GetAt(TPoint coordinates) throws Exception {
         //TODO
