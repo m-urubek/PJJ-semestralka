@@ -1,4 +1,5 @@
 import DataTypes.TCurrentPlayerTurn;
+import DataTypes.TDialogType;
 import DataTypes.TPoint;
 import DataTypes.TState;
 import greenfoot.Actor;
@@ -17,9 +18,9 @@ public class CField extends Actor {
 
     public void onClick() {
         if(CGame.PlayerState == TState.Moved) {
+            CGeneralHelper.ShowDialog(TDialogType.Warning, "Již není možné táhnout");
             return;
         }
-
 
         if (this.m_figurine == null) {
             //TODO - Player wants to move already selected figurine

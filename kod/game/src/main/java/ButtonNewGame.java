@@ -18,8 +18,11 @@ public class ButtonNewGame extends Actor
             try {
                 CGame.NewGame();
             } catch (Exception e) {
-                e.printStackTrace();
-                //TODO Warning!
+                if (e == null || e.getMessage() == null) {
+                    CGeneralHelper.ShowDialog(DataTypes.TDialogType.Error, "Neočekávaná vyjímka");
+                } else {
+                    CGeneralHelper.ShowDialog(DataTypes.TDialogType.Error, e.getMessage());
+                }
             }
         }
     }

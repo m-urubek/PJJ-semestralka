@@ -1,3 +1,4 @@
+import DataTypes.TDialogType;
 import greenfoot.*;
 
 import DataTypes.TPoint;
@@ -30,15 +31,17 @@ public class CGameLayout {
 
     private void addIndianToField(int x, int y) throws Exception {
         CField field = m_board.get(CGeneralHelper.coordsToIndex(new TPoint(x,y)));
-        CFigurine figurine = new CIndianFigurine(field);
-        field.setM_figurine(figurine);
-        CGame.instance.addObject(figurine, field.getX(), field.getY());
+        CIndianFigurine figurine = new CIndianFigurine(field);
+        field.setM_figurine((CFigurine)figurine);
+        CGame.IndianFigurines.add(figurine);
+        CGame.instance.addObject((CFigurine)figurine, field.getX(), field.getY());
     }
     private void addSettlerToField(int x, int y) throws Exception {
         CField field = m_board.get(CGeneralHelper.coordsToIndex(new TPoint(x,y)));
-        CFigurine figurine = new CSettlerFigurine(field);
-        field.setM_figurine(figurine);
-        CGame.instance.addObject(figurine, field.getX(), field.getY());
+        CSettlerFigurine figurine = new CSettlerFigurine(field);
+        field.setM_figurine((CFigurine) figurine);
+        CGame.SettlerFigurines.add(figurine);
+        CGame.instance.addObject((CFigurine)figurine, field.getX(), field.getY());
     }
 
     private CField addEmptyField(TPoint coords) throws Exception {
@@ -114,8 +117,10 @@ public class CGameLayout {
         //In Progress - TODO
 
         //Check if player already played
-        if (CGame.PlayerState == TState.Moved)
+        if (CGame.PlayerState == TState.Moved) {
+            CGeneralHelper.ShowDialog(DataTypes.TDialogType.Warning, "Již není možné táhnout.");
             return;
+        }
         source.getM_figurine().move(target);
     }
 
@@ -174,7 +179,11 @@ public class CGameLayout {
                     m_board.get(i).getM_figurine().setGamePos(CGeneralHelper.indexToGameCoords(i));
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                if (e == null || e.getMessage() == null) {
+                    CGeneralHelper.ShowDialog(DataTypes.TDialogType.Error, "Neočekávaná vyjímka");
+                } else {
+                    CGeneralHelper.ShowDialog(DataTypes.TDialogType.Error, e.getMessage());
+                }
             }
         }
     }

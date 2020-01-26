@@ -6,4 +6,6 @@ comment2.params=index
 comment2.target=DataTypes.TPoint\ indexToGameCoords(int)
 comment3.params=coords
 comment3.target=int\ coordsToIndex(DataTypes.TPoint)
-numComments=4
+comment4.params=dialogType\ text
+comment4.target=void\ ShowDialog(DataTypes.TDialogType,\ java.lang.String)
+numComments=5

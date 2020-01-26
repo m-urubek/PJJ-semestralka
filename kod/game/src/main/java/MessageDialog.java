@@ -40,6 +40,9 @@ public class MessageDialog extends Actor {
         if (dialogType == TDialogType.BlueEndedTurn) {
             this.inner = new GreenfootImage(text, 40, Color.RED, new Color(0, 0, 0, 180));
         }
+        if (dialogType == TDialogType.Warning) {
+            this.inner = new GreenfootImage(text, 40, Color.ORANGE, new Color(0, 0, 0, 180));
+        }
         // inner.scale(width, height);
     }
 

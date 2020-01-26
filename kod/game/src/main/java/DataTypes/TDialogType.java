@@ -5,4 +5,5 @@ public enum TDialogType {
     PlayerWon,
     RedEndedTurn,
     BlueEndedTurn,
+    Warning,
 }

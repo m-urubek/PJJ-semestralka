@@ -1,3 +1,4 @@
+import DataTypes.TDialogType;
 import DataTypes.TPoint;
 
 public class CGeneralHelper {
@@ -232,6 +233,10 @@ public class CGeneralHelper {
             return 32;
 
         throw new Exception("Coordinates were not entered correctly");
+    }
+
+    public static void ShowDialog(TDialogType dialogType, String text) {
+        CGame.world.addObject(new MessageDialog(dialogType, text, CGame.world.getWidth(), CGame.world.getHeight()), CGame.world.getWidth() / 2, CGame.world.getHeight() / 2);
     }
 
 }
