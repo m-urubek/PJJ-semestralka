@@ -246,6 +246,43 @@ public class CGeneralHelper {
         testRemainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y() + 2);
     }
 
+    public static void TestForStuckSettlerAndEndGame() {
+        for (CSettlerFigurine currentFigurine : CGame.SettlerFigurines) {
+            if (
+                    !TestForStuckFigurine(currentFigurine, currentFigurine.m_field.getM_x() + 2, currentFigurine.m_field.getM_y()) &&
+                            !TestForStuckFigurine(currentFigurine, currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y()) &&
+                            !TestForStuckFigurine(currentFigurine, currentFigurine.m_field.getM_x(), currentFigurine.m_field.getM_y() + 2) &&
+                            !TestForStuckFigurine(currentFigurine, currentFigurine.m_field.getM_x(), currentFigurine.m_field.getM_y() - 2) &&
+                            !TestForStuckFigurine(currentFigurine, currentFigurine.m_field.getM_x() + 2, currentFigurine.m_field.getM_y() + 2) &&
+                            !TestForStuckFigurine(currentFigurine, currentFigurine.m_field.getM_x() + 2, currentFigurine.m_field.getM_y() - 2) &&
+                            !TestForStuckFigurine(currentFigurine, currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y() - 2) &&
+                            !TestForStuckFigurine(currentFigurine, currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y() + 2) &&
+                            !TestForStuckFigurine(currentFigurine, currentFigurine.m_field.getM_x() + 1, currentFigurine.m_field.getM_y()) &&
+                            !TestForStuckFigurine(currentFigurine, currentFigurine.m_field.getM_x() - 1, currentFigurine.m_field.getM_y()) &&
+                            !TestForStuckFigurine(currentFigurine, currentFigurine.m_field.getM_x(), currentFigurine.m_field.getM_y() + 1) &&
+                            !TestForStuckFigurine(currentFigurine, currentFigurine.m_field.getM_x(), currentFigurine.m_field.getM_y() - 1) &&
+                            !TestForStuckFigurine(currentFigurine, currentFigurine.m_field.getM_x() + 1, currentFigurine.m_field.getM_y() + 1) &&
+                            !TestForStuckFigurine(currentFigurine, currentFigurine.m_field.getM_x() + 1, currentFigurine.m_field.getM_y() - 1) &&
+                            !TestForStuckFigurine(currentFigurine, currentFigurine.m_field.getM_x() - 1, currentFigurine.m_field.getM_y() - 1) &&
+                            !TestForStuckFigurine(currentFigurine, currentFigurine.m_field.getM_x() - 1, currentFigurine.m_field.getM_y() + 1)
+            ) {
+
+            }
+        }
+
+    }
+
+    private static boolean TestForStuckFigurine(CSettlerFigurine currentFigurine, int x, int y) {
+        TPoint point = new TPoint(x, y);
+        CField field = null;
+        try {
+            field = CGame.GameLayout.GetAt(point);
+        } catch (Exception ex) {
+            return false;
+        }
+        return currentFigurine.isLegalMove(field);
+    }
+
     private static void testRemainingKillAndRemove(CSettlerFigurine currentFigurine, int x, int y) {
         if (currentFigurine == null || currentFigurine.m_field.getM_figurine() == null) {
             return;
@@ -294,15 +331,14 @@ public class CGeneralHelper {
             CGame.EndGame();
         }
 
-        if (CGame.IndianFigurines.size() < 9){
+        if (CGame.IndianFigurines.size() < 9) {
             ShowDialog(TDialogType.PlayerWon, "Hráč Osadník vyhrává!");
             CGame.EndGame();
         }
-        if (CGame.SettlerFigurines.size() == 0){
+        if (CGame.SettlerFigurines.size() == 0) {
             ShowDialog(TDialogType.PlayerWon, "Hráč Indiáni vyhrává!");
             CGame.EndGame();
         }
-
 
 
     }

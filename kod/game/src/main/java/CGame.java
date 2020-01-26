@@ -188,7 +188,6 @@ public class CGame extends World {
                 }
             }
 
-            System.out.println("DEBUG");
             if (CGame.CurrentPlayerTurn == TCurrentPlayerTurn.Indian) {
                 CGame.CurrentPlayerTurn = TCurrentPlayerTurn.Settler;
                 currentPlayerGame.setImage(new GreenfootImage("current_player_settler.png"));

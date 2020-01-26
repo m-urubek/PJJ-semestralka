@@ -43,6 +43,7 @@ public class CIndianFigurine extends CFigurine {
         //Changes game state
         CGame.PlayerState = TState.Moved;
         CGeneralHelper.CheckAndEndGame();
+        CGeneralHelper.TestForStuckSettlerAndEndGame();
     }
 
     @Override
