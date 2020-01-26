@@ -24,6 +24,9 @@ public class CGame extends World {
         addObject(new ButtonNewGame(), 92, 46);
         addObject(new ButtonEndTurn(), 900, 46);
         addObject(new ButtonEndGame(), 900, 641);
+        addObject(new ButtonSaveGame(), 92, 549);
+        addObject(new ButtonLoadGame(), 92, 641);
+
         try {
             NewGame();
         } catch (Exception e) {
@@ -37,10 +40,11 @@ public class CGame extends World {
     }
 
     public static void EndGame() {
+        Greenfoot.stop();
         System.exit(0);
     }
 
-    public void SaveGame() {
+    public static void SaveGame() {
         String toSave = "";
         if (CGame.CurrentPlayerTurn == TCurrentPlayerTurn.Indian) {
             toSave+="S";
@@ -75,7 +79,7 @@ public class CGame extends World {
         }
     }
 
-    public void LoadGame() {
+    public static void LoadGame() {
 
         try {
             NewGame();

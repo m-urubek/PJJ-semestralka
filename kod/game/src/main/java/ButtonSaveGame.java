@@ -1,21 +1,21 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class ButtonEndGame here.
+ * Write a description of class ButtonSaveGame here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class ButtonEndGame extends Actor
+public class ButtonSaveGame extends Actor
 {
     /**
-     * Act - do whatever the ButtonEndGame wants to do. This method is called whenever
+     * Act - do whatever the ButtonSaveGame wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    public void act() 
+    public void act()
     {
         if (Greenfoot.mouseClicked(this)) {
-            CGame.EndGame();
+            CGame.SaveGame();
         }
-    }    
+    }
 }

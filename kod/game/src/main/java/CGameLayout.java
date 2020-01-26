@@ -29,11 +29,15 @@ public class CGameLayout {
 
     private void addIndianToField(int x, int y) throws Exception {
         CField field = m_board.get(CGeneralHelper.coordsToIndex(new TPoint(x,y)));
-        field.setM_figurine(new CIndianFigurine(field));
+        CFigurine figurine = new CIndianFigurine(field);
+        field.setM_figurine(figurine);
+        CGame.instance.addObject(figurine, field.getX(), field.getY());
     }
     private void addSettlerToField(int x, int y) throws Exception {
         CField field = m_board.get(CGeneralHelper.coordsToIndex(new TPoint(x,y)));
-        field.setM_figurine(new CSettlerFigurine(field));
+        CFigurine figurine = new CSettlerFigurine(field);
+        field.setM_figurine(figurine);
+        CGame.instance.addObject(figurine, field.getX(), field.getY());
     }
 
     private CField addEmptyField(TPoint coords) throws Exception {
