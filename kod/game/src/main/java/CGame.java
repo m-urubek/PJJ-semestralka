@@ -184,7 +184,7 @@ public class CGame extends World {
     public static void EndTurn() throws Exception{
         //DONE
         if (CGame.PlayerState!=TState.NotMoved) {
-            /*for (CSettlerFigurine currentFigurine : CGame.SettlerFigurines) {
+            for (CSettlerFigurine currentFigurine : CGame.SettlerFigurines) {
                 testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x() + 2, currentFigurine.m_field.getM_y());
                 testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y());
                 testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x(), currentFigurine.m_field.getM_y() + 2);
@@ -193,7 +193,7 @@ public class CGame extends World {
                 testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x() + 2, currentFigurine.m_field.getM_y() - 2);
                 testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y() - 2);
                 testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y() + 2);
-            }*/
+            }
             if (CGame.CurrentPlayerTurn == TCurrentPlayerTurn.Indian) {
                 CGame.CurrentPlayerTurn = TCurrentPlayerTurn.Settler;
                 currentPlayerGame.setImage(new GreenfootImage("current_player_settler.png"));
