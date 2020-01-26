@@ -1,4 +1,5 @@
 import DataTypes.TFigurineType;
+import DataTypes.TPoint;
 import greenfoot.*;
 
 public abstract class CFigurine extends Actor {
@@ -15,6 +16,10 @@ public abstract class CFigurine extends Actor {
             this.m_field.onClick();
         }
     }
+    public void setGamePos (TPoint coords) {
+        this.setLocation(coords.x, coords.y);
+    }
+
     /**
      * isLegalMove
      * Checks if figurine move is valid.

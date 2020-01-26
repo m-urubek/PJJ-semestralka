@@ -166,4 +166,16 @@ public class CGameLayout {
         }
         return string;
     }
+
+    public void updateGameField() {
+        for (int i = 0; i<33; i++) {
+            try {
+                if (m_board.get(i).getM_figurine() != null) {
+                    m_board.get(i).getM_figurine().setGamePos(CGeneralHelper.indexToGameCoords(i));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

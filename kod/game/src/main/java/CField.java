@@ -23,7 +23,20 @@ public class CField extends Actor {
 
         if (this.m_figurine == null) {
             //TODO - Player wants to move already selected figurine
+            //Check if there is selected figurine
+            if (CGame.GameLayout.getM_currentlySelectedFigurine() == null) {
+                return;
+            }
 
+            try {
+                CGame.GameLayout.getM_currentlySelectedFigurine().move(this);
+                if (CGame.GameLayout.selectedFigurine != null) {
+                    CGame.instance.removeObject(CGame.GameLayout.selectedFigurine);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
         } else {
             //TOTEST - Players wants to (re)select figurine
@@ -50,6 +63,8 @@ public class CField extends Actor {
 
             CGame.instance.addObject(CGame.GameLayout.selectedFigurine, this.getX(), this.getY());
         }
+
+        CGame.GameLayout.updateGameField();
     }
 
     private boolean IsOutOfLayout(TPoint point) {
