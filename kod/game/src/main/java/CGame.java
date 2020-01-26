@@ -33,7 +33,7 @@ public class CGame extends World {
         try {
             NewGame();
         } catch (Exception e) {
-            addObject(new ErrorDialog(e.getMessage()), this.getWidth()/2, this.getHeight()/2);
+            addObject(new MessageDialog(DataTypes.TDialogType.Error, e.getMessage(), this.getWidth(), this.getHeight()), this.getWidth()/2, this.getHeight()/2);
         }
     }
 
