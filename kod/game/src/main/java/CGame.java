@@ -46,6 +46,14 @@ public class CGame extends World {
 
 
     public static void NewGame() throws Exception {
+        if (CGame.GameLayout!=null) {
+            for (int i = 0; i < 33; i++) {
+                CGame.instance.removeObject(CGame.GameLayout.GetAt(CGeneralHelper.indexToCoords(i)).getM_figurine());
+            }
+        }
+        IndianFigurines.clear();
+        SettlerFigurines.clear();
+
         CurrentPlayerTurn = TCurrentPlayerTurn.Indian;
         PlayerState = TState.NotMoved;
         GameLayout = new CGameLayout();
@@ -60,9 +68,9 @@ public class CGame extends World {
     public static void SaveGame() {
         String toSave = "";
         if (CGame.CurrentPlayerTurn == TCurrentPlayerTurn.Indian) {
-            toSave += "S";
-        } else {
             toSave += "I";
+        } else {
+            toSave += "S";
         }
 
         if (CGame.PlayerState == TState.NotMoved) {
@@ -87,8 +95,10 @@ public class CGame extends World {
             outputStream.write(toSave.getBytes());
 
             outputStream.close();
+            CGeneralHelper.ShowDialog(TDialogType.PlayerWon, "Hra byla úspěšně uložena");
         } catch (IOException e) {
             e.printStackTrace();
+            CGeneralHelper.ShowDialog(TDialogType.Error, "Hru se nepodařilo uložit");
         }
     }
 
@@ -96,24 +106,32 @@ public class CGame extends World {
 
         try {
             NewGame();
+
+            if (CGame.GameLayout!=null) {
+                for (int i = 0; i < 33; i++) {
+                    CGame.instance.removeObject(CGame.GameLayout.GetAt(CGeneralHelper.indexToCoords(i)).getM_figurine());
+                }
+            }
+
             File file = new File("Save.txt");
             BufferedReader br = new BufferedReader(new FileReader(file));
             String toLoad;
             if ((toLoad = br.readLine()) == null || toLoad.length() != 37) {
-                throw new IOException("");
+                throw new Exception("");
             }
 
             switch (toLoad.charAt(0)) {
                 case 'I':
                     CGame.CurrentPlayerTurn = TCurrentPlayerTurn.Indian;
+                    currentPlayerGame.setImage(new GreenfootImage("current_player_indian.png"));
                     break;
                 case 'S':
                     CGame.CurrentPlayerTurn = TCurrentPlayerTurn.Settler;
+                    currentPlayerGame.setImage(new GreenfootImage("current_player_settler.png"));
                     break;
                 default:
-                    throw new IOException("");
+                    throw new Exception("");
             }
-
             switch (toLoad.charAt(1)) {
                 case 'N':
                     CGame.PlayerState = TState.NotMoved;
@@ -125,7 +143,7 @@ public class CGame extends World {
                     CGame.PlayerState = TState.Moved;
                     break;
                 default:
-                    throw new IOException("");
+                    throw new Exception("");
             }
             TPoint selectedCoords = new TPoint(-1, -1);
             if (toLoad.charAt(2) != 'E') {
@@ -134,39 +152,46 @@ public class CGame extends World {
             if (toLoad.charAt(3) != 'E') {
                 selectedCoords.y = toLoad.charAt(3) - '0';
             }
-
             for (int i = 4; i < toLoad.length(); i++) {
                 CField field = CGame.GameLayout.GetAt(CGeneralHelper.indexToCoords(i - 4));
                 switch (toLoad.charAt(i)) {
                     case 'i':
-                        field.setM_figurine(new CIndianFigurine(field));
+                        CIndianFigurine indianFigurine = new CIndianFigurine(field);
+                        field.setM_figurine(indianFigurine);
+                        TPoint iPoint = CGeneralHelper.indexToGameCoords(i-4);
+                        CGame.instance.addObject(indianFigurine, iPoint.x, iPoint.y);
+                        IndianFigurines.add(indianFigurine);
                         break;
                     case 's':
-                        field.setM_figurine(new CSettlerFigurine(field));
+                        CSettlerFigurine settlerFigurine = new CSettlerFigurine(field);
+                        field.setM_figurine(settlerFigurine);
+                        TPoint sPoint = CGeneralHelper.indexToGameCoords(i-4);
+                        CGame.instance.addObject(settlerFigurine, sPoint.x, sPoint.y);
+                        SettlerFigurines.add(settlerFigurine);
                         break;
                     case 'e':
                         field.setM_figurine(null);
                         break;
                     default:
-                        throw new IOException("");
+                        throw new Exception("");
                 }
             }
-
             if (selectedCoords.x >= 0 && selectedCoords.y >= 0) {
                 CGame.GameLayout.setM_currentlySelectedFigurine(CGame.GameLayout.GetAt(selectedCoords).getM_figurine());
             } else {
                 CGame.GameLayout.setM_currentlySelectedFigurine(null);
             }
 
-        } catch (IOException e) {
+            CGeneralHelper.ShowDialog(TDialogType.PlayerWon, "Hra byla úspěšně načtena");
+        } catch (Exception e) {
             e.printStackTrace();
             try {
                 NewGame();
+                CGeneralHelper.ShowDialog(TDialogType.Error, "Hru se nezdařilo načíst");
             } catch (Exception ex) {
                 ex.printStackTrace();
+                CGeneralHelper.ShowDialog(TDialogType.Error, "Vyskytla se kritická chyba!\nProsím, restartuje hru");
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
     }
