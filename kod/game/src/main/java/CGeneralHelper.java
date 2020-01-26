@@ -235,6 +235,40 @@ public class CGeneralHelper {
         throw new Exception("Coordinates were not entered correctly");
     }
 
+    public static void testForRemainingKillsAndRemove(CSettlerFigurine currentFigurine) {
+        testRemainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x() + 2, currentFigurine.m_field.getM_y());
+        testRemainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y());
+        testRemainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x(), currentFigurine.m_field.getM_y() + 2);
+        testRemainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x(), currentFigurine.m_field.getM_y() - 2);
+        testRemainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x() + 2, currentFigurine.m_field.getM_y() + 2);
+        testRemainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x() + 2, currentFigurine.m_field.getM_y() - 2);
+        testRemainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y() - 2);
+        testRemainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y() + 2);
+    }
+
+    private static void testRemainingKillAndRemove(CSettlerFigurine currentFigurine, int x, int y) {
+        if (currentFigurine == null || currentFigurine.m_field.getM_figurine() == null) {
+            return;
+        }
+
+        TPoint point = new TPoint(x, y);
+        CField field = null;
+        try {
+            field = CGame.GameLayout.GetAt(point);
+        } catch (Exception ex) {
+            return;
+        }
+        if (currentFigurine.isLegalMove(field)) {
+            System.out.println("kill settler");
+            CGame.SettlerFigurines.remove(currentFigurine);
+            CGame.instance.removeObject(currentFigurine);
+            currentFigurine.m_field.setM_figurine(null);
+            System.out.println("DEBUG VYHOZENI SETTLERA");
+            CGeneralHelper.ShowDialog(TDialogType.Warning, "Figurka osadníka byla vyhozena!");
+        }
+
+    }
+
     public static void ShowDialog(TDialogType dialogType, String text) {
         CGame.world.addObject(new MessageDialog(dialogType, text, CGame.world.getWidth(), CGame.world.getHeight()), CGame.world.getWidth() / 2, CGame.world.getHeight() / 2);
     }
@@ -268,6 +302,9 @@ public class CGeneralHelper {
             ShowDialog(TDialogType.PlayerWon, "Hráč Indiáni vyhrává!");
             CGame.EndGame();
         }
+
+
+
     }
 
 }

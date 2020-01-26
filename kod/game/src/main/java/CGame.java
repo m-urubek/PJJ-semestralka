@@ -171,40 +171,6 @@ public class CGame extends World {
 
     }
 
-    private static void testForRemainingKillsAndRemove(CSettlerFigurine currentFigurine) {
-        testRemainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x() + 2, currentFigurine.m_field.getM_y());
-        testRemainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y());
-        testRemainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x(), currentFigurine.m_field.getM_y() + 2);
-        testRemainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x(), currentFigurine.m_field.getM_y() - 2);
-        testRemainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x() + 2, currentFigurine.m_field.getM_y() + 2);
-        testRemainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x() + 2, currentFigurine.m_field.getM_y() - 2);
-        testRemainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y() - 2);
-        testRemainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y() + 2);
-    }
-
-    private static void testRemainingKillAndRemove(CSettlerFigurine currentFigurine, int x, int y) {
-        if (currentFigurine == null || currentFigurine.m_field.getM_figurine() == null) {
-            return;
-        }
-
-        TPoint point = new TPoint(x, y);
-        CField field = null;
-        try {
-            field = CGame.GameLayout.GetAt(point);
-        } catch (Exception ex) {
-            return;
-        }
-        if (currentFigurine.isLegalMove(field)) {
-            System.out.println("kill settler");
-            CGame.SettlerFigurines.remove(currentFigurine);
-            CGame.instance.removeObject(currentFigurine);
-            currentFigurine.m_field.setM_figurine(null);
-            System.out.println("DEBUG VYHOZENI SETTLERA");
-            CGeneralHelper.ShowDialog(TDialogType.Warning, "Figurka osadníka byla vyhozena!");
-        }
-
-    }
-
     public static void EndTurn() throws Exception {
         //DONE
         if (CGame.PlayerState != TState.NotMoved) {
@@ -214,11 +180,11 @@ public class CGame extends World {
                         //neplati pro oznacenou figurku
                         continue;
                     }
-                    testForRemainingKillsAndRemove(figurine);
+                    CGeneralHelper.testForRemainingKillsAndRemove(figurine);
                 }
                 if (CGame.PlayerState == TState.KilledSomeone) {
                     CSettlerFigurine currentlySelectedFigurine = (CSettlerFigurine) CGame.GameLayout.getM_currentlySelectedFigurine();
-                    testForRemainingKillsAndRemove(currentlySelectedFigurine);
+                    CGeneralHelper.testForRemainingKillsAndRemove(currentlySelectedFigurine);
                 }
             }
 
