@@ -33,7 +33,7 @@ public class CGame extends World {
         try {
             NewGame();
         } catch (Exception e) {
-            e.printStackTrace();
+            addObject(new ErrorDialog(e.getMessage()), this.getWidth()/2, this.getHeight()/2);
         }
     }
 
