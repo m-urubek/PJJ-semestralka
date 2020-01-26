@@ -35,7 +35,7 @@ public class CGame extends World {
         addObject(new ButtonSaveGame(), 92, 549);
         addObject(new ButtonLoadGame(), 92, 641);
         currentPlayerGame = new CurrentPlayer();
-        addObject(currentPlayerGame, 404, 46);
+        addObject(currentPlayerGame, 495, 46);
 
         try {
             NewGame();
@@ -183,7 +183,7 @@ public class CGame extends World {
     }
 
     private static void testRemainingKillAndRemove(CSettlerFigurine currentFigurine, int x, int y) {
-        if (currentFigurine == null || currentFigurine.m_field == null) {
+        if (currentFigurine == null || currentFigurine.m_field.getM_figurine() == null) {
             return;
         }
 
@@ -199,6 +199,8 @@ public class CGame extends World {
             CGame.SettlerFigurines.remove(currentFigurine);
             CGame.instance.removeObject(currentFigurine);
             currentFigurine.m_field.setM_figurine(null);
+            System.out.println("DEBUG VYHOZENI SETTLERA");
+            CGeneralHelper.ShowDialog(TDialogType.Warning, "Figurka osadníka byla vyhozena!");
         }
 
     }
