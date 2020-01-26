@@ -36,6 +36,8 @@ public class CGame extends World {
 
 
     public static void NewGame() throws Exception {
+        CurrentPlayerTurn = TCurrentPlayerTurn.Indian;
+        PlayerState = TState.NotMoved;
         GameLayout = new CGameLayout();
     }
 

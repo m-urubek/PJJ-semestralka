@@ -1,5 +1,5 @@
 import DataTypes.TFigurineType;
-import greenfoot.Actor;
+import greenfoot.*;
 
 public abstract class CFigurine extends Actor {
     private TFigurineType m_type;
@@ -9,6 +9,12 @@ public abstract class CFigurine extends Actor {
 
     public abstract CSettlerFigurine getSettlerFigurine();
 
+    @Override
+    public void act () {
+        if (Greenfoot.mouseClicked(this)) {
+            this.m_field.onClick();
+        }
+    }
     /**
      * isLegalMove
      * Checks if figurine move is valid.

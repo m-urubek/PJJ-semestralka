@@ -11,7 +11,8 @@ import static greenfoot.ActorVisitor.getWorld;
 
 public class CGameLayout {
     private List<CField> m_board;
-    private CFigurine m_currentlySelectedFigurine;
+    private CFigurine m_currentlySelectedFigurine= null;
+    public FigurineSelector selectedFigurine = null;
 
     private void addIndianFigurine(int x, int y) throws Exception {
         TPoint coords = new TPoint(x, y);
