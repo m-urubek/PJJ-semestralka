@@ -9,7 +9,7 @@ import java.util.List;
 
 import static greenfoot.ActorVisitor.getWorld;
 
-public class CGameLayout extends Actor {
+public class CGameLayout {
     private List<CField> m_board;
     private CFigurine m_currentlySelectedFigurine;
 
@@ -40,7 +40,7 @@ public class CGameLayout extends Actor {
 
         CField field = new CField(coords);
         TPoint gameCoords = CGeneralHelper.indexToGameCoords(CGeneralHelper.coordsToIndex(coords));
-        getWorld().addObject(field,gameCoords.x, gameCoords.y);
+        CGame.instance.addObject(field,gameCoords.x, gameCoords.y);
         field.setM_figurine(null);
         return field;
     }

@@ -9,21 +9,28 @@ import java.io.*;
 import java.util.List;
 
 public class CGame extends World {
+    public static CGame instance = null;
+
     public static CGameLayout GameLayout;
     public static TCurrentPlayerTurn CurrentPlayerTurn;
     public static List<CIndianFigurine> IndianFigurines;
     public static List<CSettlerFigurine> SettlerFigurines;
     public static TState PlayerState;
 
-    public CGame() throws Exception {
+    public CGame() {
         super(991,687,1);
+        instance = this;
         setBackground(new GreenfootImage("background.png"));
         addObject(new ButtonNewGame(), 92, 46);
         addObject(new ButtonEndTurn(), 900, 46);
         addObject(new ButtonEndGame(), 900, 641);
 
         if (GameLayout == null) {
-            NewGame();
+            try {
+                NewGame();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
