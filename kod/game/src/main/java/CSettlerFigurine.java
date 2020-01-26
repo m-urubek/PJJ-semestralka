@@ -11,8 +11,7 @@ public class CSettlerFigurine extends CFigurine {
 
     private boolean lookForKill(CField field) throws Exception{
         //DONE
-        System.out.println("Kill");
-        if ((this.m_field.getM_x() - field.getM_x() == 2) && (this.m_field.getM_y() - field.getM_y() == 2)) {
+        if ((this.m_field.getM_x() - field.getM_x() == 2) && (Math.abs(this.m_field.getM_y() - field.getM_y()) == 2)) {
             int x = this.m_field.getM_x();
             int y = this.m_field.getM_y();
             if (field.getM_x() > x) {
@@ -33,7 +32,6 @@ public class CSettlerFigurine extends CFigurine {
 
     public void KillIndian(TPoint coords) throws Exception{
         //DONE
-        System.out.println("Kill!!!");
         CGame.IndianFigurines.remove(CGame.GameLayout.GetAt(coords).getM_figurine().getIndianFigurine());
         CGame.instance.removeObject(CGame.GameLayout.GetAt(coords).getM_figurine());
         CGame.GameLayout.GetAt(coords).setM_figurine(null);
@@ -53,19 +51,17 @@ public class CSettlerFigurine extends CFigurine {
     }
 
     @Override
-    public void move (CField field) throws Exception{
+    public void move (CField field) throws Exception {
         //Check side of player
         if (CGame.CurrentPlayerTurn != TCurrentPlayerTurn.Settler)
             return;
         //Settler's move
-
         //Checks if figurine is settler
         if (this.getSettlerFigurine() == null)
             return;
         //Checks if move is legal
         if (!isLegalMove(field))
             return;
-
         //Check if indian should be killed and kill him
         boolean killed = lookForKill(field);
 
@@ -75,16 +71,12 @@ public class CSettlerFigurine extends CFigurine {
         CGame.GameLayout.GetAt(oldFieldCoords).setM_figurine(null);
         this.m_field = field;
 
+        CGame.PlayerState = TState.Moved;
         //Change game state
         if (killed) {
-            if (isLegalMove(CGame.GameLayout.GetAt(new TPoint(this.m_field.getM_x()-2, this.m_field.getM_y()-2))) || isLegalMove(CGame.GameLayout.GetAt(new TPoint(this.m_field.getM_x()-2, this.m_field.getM_y()+2)))) {
+            if (isLegalMove(CGame.GameLayout.GetAt(new TPoint(this.m_field.getM_x() - 2, this.m_field.getM_y() - 2))) || isLegalMove(CGame.GameLayout.GetAt(new TPoint(this.m_field.getM_x() - 2, this.m_field.getM_y() + 2)))) {
                 CGame.PlayerState = TState.KilledSomeone;
-            } else {
-                CGame.PlayerState = TState.Moved;
             }
-
-        } else {
-            CGame.PlayerState = TState.Moved;
         }
     }
 
