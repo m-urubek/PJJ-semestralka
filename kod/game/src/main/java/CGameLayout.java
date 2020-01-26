@@ -97,10 +97,6 @@ public class CGameLayout {
         m_board.get(CGeneralHelper.coordsToIndex(target)).setM_figurine(null);
     }
 
-    public void DeleteFieldContent(CField field) {
-        field.setM_figurine(null);
-    }
-
     public CField GetAt(TPoint coordinates) throws Exception {
         //TODO
         return m_board.get(CGeneralHelper.coordsToIndex(coordinates));
