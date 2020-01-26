@@ -63,6 +63,7 @@ dependency24.type=UsesDependency
 dependency25.from=CField
 dependency25.to=CFigurine
 dependency25.type=UsesDependency
+<<<<<<< HEAD
 dependency26.from=CField
 dependency26.to=FigurineSelector
 dependency26.type=UsesDependency
@@ -74,10 +75,24 @@ dependency28.to=CGame
 dependency28.type=UsesDependency
 dependency29.from=ButtonEndTurn
 dependency29.to=CGame
+=======
+dependency26.from=ButtonSaveGame
+dependency26.to=CGame
+dependency26.type=UsesDependency
+dependency27.from=ButtonEndTurn
+dependency27.to=CGame
+dependency27.type=UsesDependency
+dependency28.from=ButtonNewGame
+dependency28.to=CGame
+dependency28.type=UsesDependency
+dependency29.from=CGameLayout
+dependency29.to=CField
+>>>>>>> 999b917263983cf5004a02ebf67ce10fb39b94ef
 dependency29.type=UsesDependency
 dependency3.from=CGame
 dependency3.to=CSettlerFigurine
 dependency3.type=UsesDependency
+<<<<<<< HEAD
 dependency30.from=ButtonNewGame
 dependency30.to=CGame
 dependency30.type=UsesDependency
@@ -105,6 +120,26 @@ dependency37.type=UsesDependency
 dependency38.from=Main
 dependency38.to=CGame
 dependency38.type=UsesDependency
+=======
+dependency30.from=CGameLayout
+dependency30.to=CFigurine
+dependency30.type=UsesDependency
+dependency31.from=CGameLayout
+dependency31.to=CIndianFigurine
+dependency31.type=UsesDependency
+dependency32.from=CGameLayout
+dependency32.to=CSettlerFigurine
+dependency32.type=UsesDependency
+dependency33.from=CGameLayout
+dependency33.to=CGeneralHelper
+dependency33.type=UsesDependency
+dependency34.from=CGameLayout
+dependency34.to=CGame
+dependency34.type=UsesDependency
+dependency35.from=Main
+dependency35.to=CGame
+dependency35.type=UsesDependency
+>>>>>>> 999b917263983cf5004a02ebf67ce10fb39b94ef
 dependency4.from=CGame
 dependency4.to=CurrentPlayer
 dependency4.type=UsesDependency
@@ -121,6 +156,7 @@ dependency8.from=CGame
 dependency8.to=ButtonSaveGame
 dependency8.type=UsesDependency
 dependency9.from=CGame
+<<<<<<< HEAD
 dependency9.to=ButtonLoadGame
 dependency9.type=UsesDependency
 editor.fx.0.height=0
@@ -129,6 +165,16 @@ editor.fx.0.x=0
 editor.fx.0.y=0
 height=1000
 package.numDependencies=38
+=======
+dependency9.to=ErrorDialog
+dependency9.type=UsesDependency
+editor.fx.0.height=1056
+editor.fx.0.width=1936
+editor.fx.0.x=-8
+editor.fx.0.y=-8
+height=1056
+package.numDependencies=35
+>>>>>>> 999b917263983cf5004a02ebf67ce10fb39b94ef
 package.numTargets=15
 project.charset=UTF-8
 publish.hasSource=false
@@ -215,10 +261,14 @@ target4.width=100
 target4.x=0
 target4.y=0
 target5.height=50
+<<<<<<< HEAD
 target5.name=ButtonEndGame
+=======
+target5.name=ErrorDialog
+>>>>>>> 999b917263983cf5004a02ebf67ce10fb39b94ef
 target5.showInterface=false
 target5.type=ClassTarget
-target5.width=110
+target5.width=80
 target5.x=0
 target5.y=0
 target6.height=50
@@ -250,7 +300,11 @@ target9.width=110
 target9.x=0
 target9.y=0
 version=3.0.0
+<<<<<<< HEAD
 width=1296
+=======
+width=1936
+>>>>>>> 999b917263983cf5004a02ebf67ce10fb39b94ef
 world.lastInstantiated=CGame
 xPosition=0
 yPosition=0
