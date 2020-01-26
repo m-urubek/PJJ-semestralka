@@ -16,6 +16,7 @@ public class CGame extends World {
     public static List<CIndianFigurine> IndianFigurines;
     public static List<CSettlerFigurine> SettlerFigurines;
     public static TState PlayerState;
+    public static CurrentPlayer currentPlayerGame;
 
     public CGame() {
         super(991,687,1);
@@ -26,6 +27,8 @@ public class CGame extends World {
         addObject(new ButtonEndGame(), 900, 641);
         addObject(new ButtonSaveGame(), 92, 549);
         addObject(new ButtonLoadGame(), 92, 641);
+        currentPlayerGame = new CurrentPlayer();
+        addObject(currentPlayerGame,404, 46);
 
         try {
             NewGame();
@@ -39,6 +42,7 @@ public class CGame extends World {
         CurrentPlayerTurn = TCurrentPlayerTurn.Indian;
         PlayerState = TState.NotMoved;
         GameLayout = new CGameLayout();
+        currentPlayerGame.setImage(new GreenfootImage("current_player_indian.png"));
     }
 
     public static void EndGame() {
@@ -176,20 +180,25 @@ public class CGame extends World {
 
     public static void EndTurn() throws Exception{
         //DONE
-        for (CSettlerFigurine currentFigurine : CGame.SettlerFigurines) {
-            testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x() + 2, currentFigurine.m_field.getM_y());
-            testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y());
-            testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x(), currentFigurine.m_field.getM_y() + 2);
-            testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x(), currentFigurine.m_field.getM_y() - 2);
-            testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x() + 2, currentFigurine.m_field.getM_y() + 2);
-            testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x() + 2, currentFigurine.m_field.getM_y() - 2);
-            testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y() - 2);
-            testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y() + 2);
-        }
-        if (CGame.CurrentPlayerTurn == TCurrentPlayerTurn.Indian) {
-            CGame.CurrentPlayerTurn = TCurrentPlayerTurn.Settler;
-        } else {
-            CGame.CurrentPlayerTurn = TCurrentPlayerTurn.Indian;
+        if (CGame.PlayerState!=TState.NotMoved) {
+            /*for (CSettlerFigurine currentFigurine : CGame.SettlerFigurines) {
+                testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x() + 2, currentFigurine.m_field.getM_y());
+                testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y());
+                testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x(), currentFigurine.m_field.getM_y() + 2);
+                testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x(), currentFigurine.m_field.getM_y() - 2);
+                testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x() + 2, currentFigurine.m_field.getM_y() + 2);
+                testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x() + 2, currentFigurine.m_field.getM_y() - 2);
+                testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y() - 2);
+                testremainingKillAndRemove(currentFigurine,currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y() + 2);
+            }*/
+            if (CGame.CurrentPlayerTurn == TCurrentPlayerTurn.Indian) {
+                CGame.CurrentPlayerTurn = TCurrentPlayerTurn.Settler;
+                currentPlayerGame.setImage(new GreenfootImage("current_player_settler.png"));
+            } else {
+                CGame.CurrentPlayerTurn = TCurrentPlayerTurn.Indian;
+                currentPlayerGame.setImage(new GreenfootImage("current_player_indian.png"));
+            }
+            CGame.PlayerState=TState.NotMoved;
         }
     }
 
