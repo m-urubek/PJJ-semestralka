@@ -1,3 +1,5 @@
+import greenfoot.*;
+
 import DataTypes.TPoint;
 import DataTypes.TState;
 
@@ -5,7 +7,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class CGameLayout {
+import static greenfoot.ActorVisitor.getWorld;
+
+public class CGameLayout extends Actor {
     private List<CField> m_board;
     private CFigurine m_currentlySelectedFigurine;
 
@@ -33,7 +37,10 @@ public class CGameLayout {
     }
 
     private CField addEmptyField(TPoint coords) throws Exception {
+
         CField field = new CField(coords);
+        TPoint gameCoords = CGeneralHelper.indexToGameCoords(CGeneralHelper.coordsToIndex(coords));
+        getWorld().addObject(field,gameCoords.x, gameCoords.y);
         field.setM_figurine(null);
         return field;
     }
