@@ -22,7 +22,7 @@ public class CGame extends World {
     public static CurrentPlayer currentPlayerGame;
 
     public CGame() {
-        super(991,687,1);
+        super(991, 687, 1);
         instance = this;
         world = this;
         IndianFigurines = new ArrayList<CIndianFigurine>();
@@ -35,12 +35,12 @@ public class CGame extends World {
         addObject(new ButtonSaveGame(), 92, 549);
         addObject(new ButtonLoadGame(), 92, 641);
         currentPlayerGame = new CurrentPlayer();
-        addObject(currentPlayerGame,404, 46);
+        addObject(currentPlayerGame, 404, 46);
 
         try {
             NewGame();
         } catch (Exception e) {
-            addObject(new MessageDialog(DataTypes.TDialogType.Error, e.getMessage(), this.getWidth(), this.getHeight()), this.getWidth()/2, this.getHeight()/2);
+            addObject(new MessageDialog(DataTypes.TDialogType.Error, e.getMessage(), this.getWidth(), this.getHeight()), this.getWidth() / 2, this.getHeight() / 2);
         }
     }
 
@@ -60,26 +60,26 @@ public class CGame extends World {
     public static void SaveGame() {
         String toSave = "";
         if (CGame.CurrentPlayerTurn == TCurrentPlayerTurn.Indian) {
-            toSave+="S";
+            toSave += "S";
         } else {
-            toSave+="I";
+            toSave += "I";
         }
 
         if (CGame.PlayerState == TState.NotMoved) {
-            toSave+="N";
+            toSave += "N";
         } else if (CGame.PlayerState == TState.KilledSomeone) {
-            toSave+="C";
+            toSave += "C";
         } else {
-            toSave+="M";
+            toSave += "M";
         }
 
         if (CGame.GameLayout.getM_currentlySelectedFigurine() == null) {
-            toSave+="EE";
+            toSave += "EE";
         } else {
-            toSave = toSave +CGame.GameLayout.getM_currentlySelectedFigurine().m_field.getM_x() + CGame.GameLayout.getM_currentlySelectedFigurine().m_field.getM_y();
+            toSave = toSave + CGame.GameLayout.getM_currentlySelectedFigurine().m_field.getM_x() + CGame.GameLayout.getM_currentlySelectedFigurine().m_field.getM_y();
         }
 
-        toSave+=CGame.GameLayout.SaveGame();
+        toSave += CGame.GameLayout.SaveGame();
 
         try {
             FileOutputStream outputStream = new FileOutputStream("Save.txt");
@@ -99,16 +99,16 @@ public class CGame extends World {
             File file = new File("Save.txt");
             BufferedReader br = new BufferedReader(new FileReader(file));
             String toLoad;
-            if ((toLoad = br.readLine()) == null || toLoad.length()!=37) {
+            if ((toLoad = br.readLine()) == null || toLoad.length() != 37) {
                 throw new IOException("");
             }
 
             switch (toLoad.charAt(0)) {
                 case 'I':
-                    CGame.CurrentPlayerTurn=TCurrentPlayerTurn.Indian;
+                    CGame.CurrentPlayerTurn = TCurrentPlayerTurn.Indian;
                     break;
                 case 'S':
-                    CGame.CurrentPlayerTurn=TCurrentPlayerTurn.Settler;
+                    CGame.CurrentPlayerTurn = TCurrentPlayerTurn.Settler;
                     break;
                 default:
                     throw new IOException("");
@@ -116,27 +116,27 @@ public class CGame extends World {
 
             switch (toLoad.charAt(1)) {
                 case 'N':
-                    CGame.PlayerState=TState.NotMoved;
+                    CGame.PlayerState = TState.NotMoved;
                     break;
                 case 'C':
-                    CGame.PlayerState=TState.KilledSomeone;
+                    CGame.PlayerState = TState.KilledSomeone;
                     break;
                 case 'M':
-                    CGame.PlayerState=TState.Moved;
+                    CGame.PlayerState = TState.Moved;
                     break;
                 default:
                     throw new IOException("");
             }
             TPoint selectedCoords = new TPoint(-1, -1);
             if (toLoad.charAt(2) != 'E') {
-                selectedCoords.x = toLoad.charAt(2)-'0';
+                selectedCoords.x = toLoad.charAt(2) - '0';
             }
             if (toLoad.charAt(3) != 'E') {
-                selectedCoords.y = toLoad.charAt(3)-'0';
+                selectedCoords.y = toLoad.charAt(3) - '0';
             }
 
-            for (int i = 4; i<toLoad.length(); i++) {
-                CField field = CGame.GameLayout.GetAt(CGeneralHelper.indexToCoords(i-4));
+            for (int i = 4; i < toLoad.length(); i++) {
+                CField field = CGame.GameLayout.GetAt(CGeneralHelper.indexToCoords(i - 4));
                 switch (toLoad.charAt(i)) {
                     case 'i':
                         field.setM_figurine(new CIndianFigurine(field));
@@ -171,7 +171,18 @@ public class CGame extends World {
 
     }
 
-    private static void testremainingKillAndRemove(CSettlerFigurine currentFigurine, int x, int y) {
+    private static void testForRemainingKillsAndRemove(CSettlerFigurine currentFigurine) {
+        testRemainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x() + 2, currentFigurine.m_field.getM_y());
+        testRemainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y());
+        testRemainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x(), currentFigurine.m_field.getM_y() + 2);
+        testRemainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x(), currentFigurine.m_field.getM_y() - 2);
+        testRemainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x() + 2, currentFigurine.m_field.getM_y() + 2);
+        testRemainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x() + 2, currentFigurine.m_field.getM_y() - 2);
+        testRemainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y() - 2);
+        testRemainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y() + 2);
+    }
+
+    private static void testRemainingKillAndRemove(CSettlerFigurine currentFigurine, int x, int y) {
         if (currentFigurine == null) {
             return;
         }
@@ -180,11 +191,11 @@ public class CGame extends World {
         CField field = null;
         try {
             field = CGame.GameLayout.GetAt(point);
-
         } catch (Exception ex) {
             return;
         }
         if (currentFigurine.isLegalMove(field)) {
+            System.out.println("kill settler");
             CGame.SettlerFigurines.remove(currentFigurine);
             CGame.instance.removeObject(field.getM_figurine());
             field.setM_figurine(null);
@@ -192,31 +203,34 @@ public class CGame extends World {
 
     }
 
-    public static void EndTurn() throws Exception{
+    public static void EndTurn() throws Exception {
         //DONE
-        if (CGame.PlayerState!=TState.NotMoved) {
-            if (CGame.PlayerState == TState.KilledSomeone) {
-                for (CSettlerFigurine currentFigurine : CGame.SettlerFigurines) {
-                    testremainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x() + 2, currentFigurine.m_field.getM_y());
-                    testremainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y());
-                    testremainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x(), currentFigurine.m_field.getM_y() + 2);
-                    testremainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x(), currentFigurine.m_field.getM_y() - 2);
-                    testremainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x() + 2, currentFigurine.m_field.getM_y() + 2);
-                    testremainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x() + 2, currentFigurine.m_field.getM_y() - 2);
-                    testremainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y() - 2);
-                    testremainingKillAndRemove(currentFigurine, currentFigurine.m_field.getM_x() - 2, currentFigurine.m_field.getM_y() + 2);
+        if (CGame.PlayerState != TState.NotMoved) {
+            if (CGame.CurrentPlayerTurn == TCurrentPlayerTurn.Settler) {
+                for (CSettlerFigurine figurine : CGame.SettlerFigurines) {
+                    if (figurine == CGame.GameLayout.getM_currentlySelectedFigurine()) {
+                        //neplati pro oznacenou figurku
+                        continue;
+                    }
+                    testForRemainingKillsAndRemove(figurine);
+                }
+                if (CGame.PlayerState != TState.KilledSomeone) {
+                    CSettlerFigurine currentlySelectedFigurine = (CSettlerFigurine) CGame.GameLayout.getM_currentlySelectedFigurine();
+                    testForRemainingKillsAndRemove(currentlySelectedFigurine);
                 }
             }
-             if (CGame.CurrentPlayerTurn == TCurrentPlayerTurn.Indian) {
+
+            System.out.println("DEBUG");
+            if (CGame.CurrentPlayerTurn == TCurrentPlayerTurn.Indian) {
                 CGame.CurrentPlayerTurn = TCurrentPlayerTurn.Settler;
                 currentPlayerGame.setImage(new GreenfootImage("current_player_settler.png"));
-                world.addObject(new MessageDialog(TDialogType.RedEndedTurn, "Hráč Indiáni ukončil svůj tah. Na řadě je hráč Osadníci", world.getWidth(), world.getHeight()), world.getWidth()/2, world.getHeight()/2);
+                world.addObject(new MessageDialog(TDialogType.RedEndedTurn, "Hráč Indiáni ukončil svůj tah. Na řadě je hráč Osadníci", world.getWidth(), world.getHeight()), world.getWidth() / 2, world.getHeight() / 2);
             } else {
                 CGame.CurrentPlayerTurn = TCurrentPlayerTurn.Indian;
                 currentPlayerGame.setImage(new GreenfootImage("current_player_indian.png"));
-                world.addObject(new MessageDialog(TDialogType.BlueEndedTurn, "Hráč Osadníci ukončil svůj tah. Na řadě je hráč Indiáni", world.getWidth(), world.getHeight()), world.getWidth()/2, world.getHeight()/2);
+                world.addObject(new MessageDialog(TDialogType.BlueEndedTurn, "Hráč Osadníci ukončil svůj tah. Na řadě je hráč Indiáni", world.getWidth(), world.getHeight()), world.getWidth() / 2, world.getHeight() / 2);
             }
-            CGame.PlayerState=TState.NotMoved;
+            CGame.PlayerState = TState.NotMoved;
         }
     }
 
