@@ -11,23 +11,22 @@ public class CSettlerFigurine extends CFigurine {
 
     private boolean lookForKill(CField field) throws Exception{
         //DONE
-        if ((this.m_field.getM_x() - field.getM_x() == 2) && (Math.abs(this.m_field.getM_y() - field.getM_y()) == 2)) {
-            int x = this.m_field.getM_x();
-            int y = this.m_field.getM_y();
-            if (field.getM_x() > x) {
-                x++;
-            } else {
-                x--;
-            }
-            if (field.getM_y() > y) {
-                y++;
-            } else {
-                y--;
-            }
-            KillIndian(new TPoint(x,y));
-            return true;
+
+        int x = Math.abs(field.getM_x() - this.m_field.getM_x());
+        int y = Math.abs(field.getM_y() - this.m_field.getM_y());
+        if ((x!=0 && x!=2) || (y!=0 && y!=2)) {
+            return false;
         }
-        return false;
+        x = this.m_field.getM_x() + ((field.getM_x() - this.m_field.getM_x())/2);
+        y = this.m_field.getM_y() + ((field.getM_y() - this.m_field.getM_y())/2);
+        try {
+            if (CGame.GameLayout.GetAt(new TPoint(x,y)).getM_figurine().getIndianFigurine()==null)
+                return false;
+        } catch (Exception e) {
+            return false;
+        }
+        KillIndian(new TPoint(x,y));
+        return true;
     }
 
     public void KillIndian(TPoint coords) throws Exception{
@@ -74,9 +73,7 @@ public class CSettlerFigurine extends CFigurine {
         CGame.PlayerState = TState.Moved;
         //Change game state
         if (killed) {
-            if (isLegalMove(CGame.GameLayout.GetAt(new TPoint(this.m_field.getM_x() - 2, this.m_field.getM_y() - 2))) || isLegalMove(CGame.GameLayout.GetAt(new TPoint(this.m_field.getM_x() - 2, this.m_field.getM_y() + 2)))) {
-                CGame.PlayerState = TState.KilledSomeone;
-            }
+            CGame.PlayerState = TState.KilledSomeone;
         }
     }
 
@@ -95,49 +92,39 @@ public class CSettlerFigurine extends CFigurine {
                 (field.getM_x() > 4 && field.getM_y() < 2) ||
                 (field.getM_x() > 4 && field.getM_y() > 4))
             return false;
-        //Check if diagonal move is possible
-        if ( (this.m_field.getM_x() % 2) == (this.m_field.getM_y() % 2) ) {
-            //Can move diagonally
-            //Check if moving too far away
-            if (Math.abs(field.getM_x() - this.m_field.getM_x()) > 1 || Math.abs(field.getM_y() - this.m_field.getM_y()) > 1) {
-                //Moving too far away may indicate killing enemy figure
-
-                //Check if not moving 2 horizontal and 2 vertical
-                if (Math.abs(field.getM_x() - this.m_field.getM_x()) != 2 || Math.abs(field.getM_y() - this.m_field.getM_y()) != 2)
-                    return false;
-                //Check if the field between the positions contains indian figure
-                int x = this.m_field.getM_x();
-                int y = this.m_field.getM_y();
-                if (field.getM_x() > x) {
-                    x++;
-                } else {
-                    x--;
-                }
-                if (field.getM_y() > y) {
-                    y++;
-                } else {
-                    y--;
-                }
-                try {
-                    if (CGame.GameLayout.GetAt(new TPoint(x,y)).getM_figurine().getIndianFigurine()==null)
-                        return false;
-                } catch (Exception e) {
-                    return false;
-                }
+        //Check if moving too far away
+        if (Math.abs(field.getM_x() - this.m_field.getM_x()) > 1 || Math.abs(field.getM_y() - this.m_field.getM_y()) > 1) {
+            //Moving too far away may indicate killing enemy figure
+            //Check if moving for killing
+            int x = Math.abs(field.getM_x() - this.m_field.getM_x());
+            int y = Math.abs(field.getM_y() - this.m_field.getM_y());
+            if ((x!=0 && x!=2) || (y!=0 && y!=2)) {
+                return false;
             }
-            //Check if target field is occupied
-            return field.getM_figurine() == null;
+
+            x = this.m_field.getM_x() + ((field.getM_x() - this.m_field.getM_x())/2);
+            y = this.m_field.getM_y() + ((field.getM_y() - this.m_field.getM_y())/2);
+            try {
+                if (CGame.GameLayout.GetAt(new TPoint(x,y)).getM_figurine().getIndianFigurine()==null)
+                    return false;
+            } catch (Exception e) {
+                return false;
+            }
         } else {
-            //Can not move diagonally
-            //Check if moving too far away
-            if (Math.abs(field.getM_x() - this.m_field.getM_x()) > 1 || Math.abs(field.getM_y() - this.m_field.getM_y()) > 1)
+            if (CGame.PlayerState == TState.KilledSomeone) {
                 return false;
-            //Check if moving diagonally
-            if (field.getM_x() != this.m_field.getM_x() && field.getM_y() != this.m_field.getM_y())
-                return false;
-            //Check if target field is occupied
-            return field.getM_figurine() == null;
+            }
         }
+        //Check if diagonal move is possible
+        if ( (this.m_field.getM_x() % 2) != (this.m_field.getM_y() % 2) ) {
+            //Can not move diagonally
+            //Check if moving diagonally
+            if (field.getM_x() != this.m_field.getM_x() && field.getM_y() != this.m_field.getM_y()) {
+                return false;
+            }
+        }
+        //Check if target field is occupied
+        return field.getM_figurine() == null;
 
     }
 
