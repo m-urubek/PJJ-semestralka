@@ -24,20 +24,15 @@ public class CGame extends World {
         addObject(new ButtonNewGame(), 92, 46);
         addObject(new ButtonEndTurn(), 900, 46);
         addObject(new ButtonEndGame(), 900, 641);
-
-        if (GameLayout == null) {
-            try {
-                NewGame();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        try {
+            NewGame();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
+
     public static void NewGame() throws Exception {
-        if (GameLayout != null) {
-            EndGame();
-        }
         GameLayout = new CGameLayout();
     }
 

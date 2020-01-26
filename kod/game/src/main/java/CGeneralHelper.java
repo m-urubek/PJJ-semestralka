@@ -80,71 +80,71 @@ public class CGeneralHelper {
         //DONE
         switch (index) {
             case 0:
-                return new TPoint(2, 0);
+                return new TPoint(395, 123);
             case 1:
-                return new TPoint(3, 0);
+                return new TPoint(466, 123);
             case 2:
-                return new TPoint(4, 0);
+                return new TPoint(538, 123);
             case 3:
-                return new TPoint(2, 1);
+                return new TPoint(394, 195);
             case 4:
-                return new TPoint(3, 1);
+                return new TPoint(466, 195);
             case 5:
-                return new TPoint(4, 1);
+                return new TPoint(538, 195);
             case 6:
-                return new TPoint(0, 2);
+                return new TPoint(250, 269);
             case 7:
-                return new TPoint(1, 2);
+                return new TPoint(320, 269);
             case 8:
-                return new TPoint(2, 2);
+                return new TPoint(392, 269);
             case 9:
-                return new TPoint(3, 2);
+                return new TPoint(466, 269);
             case 10:
-                return new TPoint(4, 2);
+                return new TPoint(538, 270);
             case 11:
-                return new TPoint(5, 2);
+                return new TPoint(610, 270);
             case 12:
-                return new TPoint(6, 2);
+                return new TPoint(682, 271);
             case 13:
-                return new TPoint(0, 3);
+                return new TPoint(250, 341);
             case 14:
-                return new TPoint(1, 3);
+                return new TPoint(320, 341);
             case 15:
-                return new TPoint(2, 3);
+                return new TPoint(392, 341);
             case 16:
-                return new TPoint(3, 3);
+                return new TPoint(466, 342);
             case 17:
-                return new TPoint(4, 3);
+                return new TPoint(538, 343);
             case 18:
-                return new TPoint(5, 3);
+                return new TPoint(610, 343);
             case 19:
-                return new TPoint(6, 3);
+                return new TPoint(683, 343);
             case 20:
-                return new TPoint(0, 4);
+                return new TPoint(249, 415);
             case 21:
-                return new TPoint(1, 4);
+                return new TPoint(320, 415);
             case 22:
-                return new TPoint(2, 4);
+                return new TPoint(392, 415);
             case 23:
-                return new TPoint(3, 4);
+                return new TPoint(466, 415);
             case 24:
-                return new TPoint(4, 4);
+                return new TPoint(538, 416);
             case 25:
-                return new TPoint(5, 4);
+                return new TPoint(610, 417);
             case 26:
-                return new TPoint(6, 4);
+                return new TPoint(682, 417);
             case 27:
-                return new TPoint(2, 5);
+                return new TPoint(393, 490);
             case 28:
-                return new TPoint(3, 5);
+                return new TPoint(465, 490);
             case 29:
-                return new TPoint(4, 5);
+                return new TPoint(537, 491);
             case 30:
-                return new TPoint(2, 6);
+                return new TPoint(392, 563);
             case 31:
-                return new TPoint(3, 6);
+                return new TPoint(464, 564);
             case 32:
-                return new TPoint(4, 6);
+                return new TPoint(537, 564);
         }
         throw new Exception("Entered index is out of bound");
     }

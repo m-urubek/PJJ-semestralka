@@ -15,6 +15,7 @@ public class ButtonEndGame extends Actor
     public void act() 
     {
         if (Greenfoot.mouseClicked(this)) {
+            Greenfoot.stop();
             CGame.EndGame();
         }
     }    

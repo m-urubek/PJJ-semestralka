@@ -40,7 +40,7 @@ public class CGameLayout {
 
         CField field = new CField(coords);
         TPoint gameCoords = CGeneralHelper.indexToGameCoords(CGeneralHelper.coordsToIndex(coords));
-        CGame.instance.addObject(field,gameCoords.x, gameCoords.y);
+        CGame.instance.addObject(field, gameCoords.x, gameCoords.y);
         field.setM_figurine(null);
         return field;
     }

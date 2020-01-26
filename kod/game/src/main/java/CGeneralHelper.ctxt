@@ -2,6 +2,8 @@
 comment0.target=CGeneralHelper
 comment1.params=index
 comment1.target=DataTypes.TPoint\ indexToCoords(int)
-comment2.params=coords
-comment2.target=int\ coordsToIndex(DataTypes.TPoint)
-numComments=3
+comment2.params=index
+comment2.target=DataTypes.TPoint\ indexToGameCoords(int)
+comment3.params=coords
+comment3.target=int\ coordsToIndex(DataTypes.TPoint)
+numComments=4
