@@ -264,6 +264,10 @@ public class CGeneralHelper {
             ShowDialog(TDialogType.PlayerWon, "Hráč Osadník vyhrává!");
             CGame.EndGame();
         }
+        if (CGame.SettlerFigurines.size() == 0){
+            ShowDialog(TDialogType.PlayerWon, "Hráč Indiáni vyhrává!");
+            CGame.EndGame();
+        }
     }
 
 }
